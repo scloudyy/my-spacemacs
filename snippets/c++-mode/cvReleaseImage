@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cvReleaseImage
+# key: cvri
+# --
+cvReleaseImage(&${1:name});$0

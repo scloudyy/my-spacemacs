@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cvShowImage
+# key: cvsi
+# --
+cvShowImage("${1:window's name}", ${2:image name});$0

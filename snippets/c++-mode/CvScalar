@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: CvScalar
+# key: cvs
+# --
+CvScalar $0

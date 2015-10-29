@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cvLoadImage
+# key: cvli
+# --
+cvLoadImage("${1:image name}", ${2:default 1});$0

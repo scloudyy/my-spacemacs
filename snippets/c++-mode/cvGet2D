@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cvGet2D
+# key: cvg2
+# --
+cvGet2D(${1:const CvArr *arr}, ${2:row}, ${3:column})${4: .val or not};$0

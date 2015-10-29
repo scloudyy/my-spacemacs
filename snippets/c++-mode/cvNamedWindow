@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cvNamedWindow
+# key: cvnw
+# --
+cvNamedWindow("${1:window's name}", ${2:default 1});$0
