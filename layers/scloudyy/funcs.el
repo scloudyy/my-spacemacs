@@ -280,7 +280,7 @@ Position the cursor at its beginning, according to the current mode."
 
 (require 'ido)
 
-(setq octopress-workdir (expand-file-name "~/blogs/"))
+(setq octopress-workdir (expand-file-name "/root/blogs/"))
 
 (defun scloudyy/octopress-rake (command)
   "run rake commands"
@@ -294,26 +294,26 @@ Position the cursor at its beginning, according to the current mode."
 (defun scloudyy/octopress-generate ()
   "generate jekyll site"
   (interactive)
-  (zilongshanren/octopress-rake "generate")
+  (scloudyy/octopress-rake "generate")
   (message "Generate site OK"))
 
 (defun scloudyy/octopress-deploy ()
   "default deploy task"
   (interactive)
-  (zilongshanren/octopress-rake "deploy")
-  (zilongshanren/octopress-qrsync "/root/blogs/scloudyy.json")
+  (scloudyy/octopress-rake "deploy")
+  (scloudyy/octopress-qrsync "/root/blogs/scloudyy.json")
   (message "Deploy site OK"))
 
 (defun scloudyy/octopress-gen-deploy ()
   "generate website and deploy"
   (interactive)
-  (zilongshanren/octopress-rake "gen_deploy")
-  (zilongshanren/octopress-qrsync "/root/blogs/scloudyy.json")
+  (scloudyy/octopress-rake "gen_deploy")
+  (scloudyy/octopress-qrsync "/root/blogs/scloudyy.json")
   (message "Generate and Deploy OK"))
 
 (defun scloudyy/octopress-upimg ()
   (interactive)
-  (zilongshanren/octopress-qrsync "/root/blogs/scloudyy.json")
+  (scloudyy/octopress-qrsync "/root/blogs/scloudyy.json")
   (message "Up Img to Qiniu"))
 
 (defun directory-parent (directory)

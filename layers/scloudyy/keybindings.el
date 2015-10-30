@@ -85,3 +85,7 @@
 (bind-key* "s-k" 'scroll-other-window-down)
 (bind-key* "s-j"  'scroll-other-window)
 (bind-key* "C-c /" 'company-files)
+
+(global-set-key (kbd "C-<SPC>") 'toggle-input-method)
+
+(global-set-key (kbd "C-x x") 'helm-M-x)

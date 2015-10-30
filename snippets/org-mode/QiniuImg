@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Qiniu Img
+# key: qnimg
+# --
+[[http://7xnvv1.com1.z0.glb.clouddn.com/${1:img name}]]$0
