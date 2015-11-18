@@ -16,7 +16,7 @@
         evil
         company
         cmake
-        flycheck
+        ;flycheck
         markdown
         helm
         ace-window
@@ -34,6 +34,7 @@
         visual-regexp-steroids
         avy
         hydra
+        prodigy
         ))
 
 ;;configs for EVIL mode
@@ -146,21 +147,22 @@
 
       (add-hook 'cmake-mode-hook (function cmake-rename-buffer)))))
 
-(defun scloudyy/post-init-flycheck ()
-  (use-package flycheck
-    :defer t
-    :config (progn
-              ;(flycheck-package-setup)
-              (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-              (setq flycheck-display-errors-delay 0.2)
-              ;(remove-hook 'c-mode-hook 'flycheck-mode)
-              ;(remove-hook 'c++-mode-hook 'flycheck-mode)
-              (spacemacs|evilify-map flycheck-error-list-mode-map
-                :mode flycheck-error-list-mode
-                :bindings
-                (kbd "RET") 'flycheck-error-list-goto-error)
-              ;; (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
-              )))
+;; (defun scloudyy/post-init-flycheck ()
+;;   ;(use-package flycheck
+;;   ;  :defer t
+;;   ;  :config (progn
+;;               ;(flycheck-package-setup)
+;;               ;(setq flycheck-display-errors-function 'flycheck-display-error-messages)
+;;               (setq flycheck-display-errors-delay 0.2)
+;;               (dolist (mode '(c-mode-hook c++-mode-hook))
+;;                 (spacemacs/add-flycheck-hook mode))
+;;              ; (spacemacs|evilify-map flycheck-error-list-mode-map
+;;              ;   :mode flycheck-error-list-mode
+;;              ;   :bindings
+;;              ;   (kbd "RET") 'flycheck-error-list-goto-error)
+;;              ;  (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
+;;               ; ))
+;; )
 
 ;; configs for writing
 (defun scloudyy/post-init-markdown-mode ()
@@ -391,7 +393,7 @@
 
     ;; http://wenshanren.org/?p=327
     ;; change it to helm
-    (defun zilongshanren/org-insert-src-block (src-code-type)
+    (defun scloudyy/org-insert-src-block (src-code-type)
       "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
       (interactive
        (let ((src-code-types
@@ -413,7 +415,7 @@
                                 ;; keybinding for editing source code blocks
                                 ;; keybinding for inserting code blocks
                                 (local-set-key (kbd "C-c i s")
-                                               'zilongshanren/org-insert-src-block)
+                                               'scloudyy/org-insert-src-block)
                                 ))
     (require 'ox-publish)
     (add-to-list 'org-latex-classes '("ctexart" "\\documentclass[11pt]{ctexart}
@@ -479,18 +481,20 @@
     (setq org-latex-listings t)
     ;; improve org babel
 
-    ;; (org-babel-do-load-languages
-    ;;  'org-babel-load-languages
-    ;;  '( (perl . t)
-    ;;     (ruby . t)
-    ;;     (sh . t)
-    ;;     (js . t)
-    ;;     (python . t)
-    ;;     (emacs-lisp . t)
-    ;;     (plantuml . t)
-    ;;     (C . t)
-    ;;     (R . t)
-    ;;     (ditaa . t)))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+        ;(perl . t)
+        ;(ruby . t)
+        (sh . t)
+        ;(js . t)
+        (python . t)
+        (emacs-lisp . t)
+        ;(plantuml . t)
+        (C . t)
+        ;(R . t)
+                                        ;(ditaa . t)
+        ))
 
     (setq org-plantuml-jar-path
           (expand-file-name "~/.spacemacs.d/plantuml.jar"))
@@ -635,12 +639,17 @@
                                           company-etags
                                           company-gtags :with company-yasnippet)
                                           company-files company-dabbrev ))
+  (add-hook 'c-mode-hook 'flycheck-mode)
+  (add-hook 'c++-mode-hook 'flycheck-mode)
   )
+
 
 (defun scloudyy/post-init-ycmd ()
   (setq ycmd-tag-files 'auto)
   (setq ycmd-request-message-level -1)
-  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py"))))
+  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
+  (define-key c++-mode-map (kbd "M-[") 'ycmd-goto)
+  )
 
 (defun scloudyy/post-init-whitespace ()
   (set-face-attribute 'whitespace-tab nil
@@ -660,6 +669,7 @@
       (evilify org-octopress-summary-mode org-octopress-summary-mode-map)
       (add-hook 'org-octopress-summary-mode-hook
                 #'(lambda () (local-set-key (kbd "q") 'bury-buffer)))
+
       (setq org-blog-dir "~/blogs/")
       (setq org-octopress-directory-top org-blog-dir)
       (setq org-octopress-directory-posts (concat org-blog-dir "source/_posts"))
@@ -667,12 +677,12 @@
       (setq org-octopress-directory-org-posts (concat org-blog-dir "blog"))
       (setq org-octopress-setup-file (concat org-blog-dir "setupfile.org"))
 
-      (defun zilongshanren/org-save-and-export ()
+      (defun scloudyy/org-save-and-export-blogs ()
         (interactive)
         (org-octopress-setup-publish-project)
         (org-publish-project "octopress" t))
 
-      (evil-leader/set-key "op" 'zilongshanren/org-save-and-export)
+      (evil-leader/set-key "ob" 'scloudyy/org-save-and-export-blogs)
       )))
 
 (defun scloudyy/init-visual-regexp ()
@@ -693,7 +703,7 @@
     (progn
       (require 'ace-pinyin)
       (setq ace-pinyin-use-avy t)
-      (global-set-key (kbd "C-M-'") 'avy-goto-char-2))))
+      (global-set-key (kbd "C-M-;") 'avy-goto-char-2))))
 
 (defun scloudyy/init-hydra ()
   (use-package hydra
@@ -765,3 +775,30 @@
 
       (bind-key*  "<f4>" 'hydra-apropos/body)
       )))
+
+
+(defun scloudyy/post-init-prodigy ()
+  (prodigy-define-tag
+    :name 'jekyll
+    :env '(("LANG" "en_US.UTF-8")
+           ("LC_ALL" "en_US.UTF-8")))
+  ;; define service
+
+  (prodigy-define-service
+    :name "Hexo Server"
+    :command "hexo"
+    :args '("server")
+    :cwd "~/blogs"
+    :tags '(hexo server)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "Hexo Deploy"
+    :command "hexo"
+    :args '("deploy" "--generate")
+    :cwd "~/blogs"
+    :tags '(hexo deploy)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+)

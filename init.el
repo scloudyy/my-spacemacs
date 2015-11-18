@@ -34,7 +34,9 @@ values."
      ;prodigy
      search-engine
      (syntax-checking :variables
-                      syntax-checking-enable-tooltips t)
+                      syntax-checking-enable-tooltips t
+                      syntax-checking-enable-by-default t)
+
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      yaml
@@ -54,6 +56,7 @@ values."
      gtags
      ;; perspectives
      eyebrowse
+     latex
      ;(colors :variables
      ;        colors-enable-nyan-cat-progress-bar t)
      (git :variables
@@ -63,13 +66,16 @@ values."
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t)
+                      auto-completion-enable-snippets-in-popup nil)
      (shell :variables
+            shell-default-height 60
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
      (chinese :variables
               chinese-default-input-method 'pinyin
               chinese-enable-youdao-dict t)
+     prodigy
+     github
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -193,7 +199,7 @@ values."
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
    ;; (default 'bottom)
-   dotspacemacs-which-key-position 'bottom
+   dotspacemacs-which-key-position 'right
    ;; If non nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
@@ -221,7 +227,7 @@ values."
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling nil
+   dotspacemacs-smooth-scrolling t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -260,8 +266,10 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+
+  (setq smooth-scroll-margin 1)
+
   (global-visual-line-mode t)
-  (remove-hook 'gnd-mode-hook 'company-mode)
 
   ;; (defadvice gdb-setup-windows (after my-setup-gdb-windows activate)
   ;;   "my gdb UI"
@@ -318,9 +326,9 @@ layers configuration."
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
 
-
-
-  )
+  (remove-hook 'c-mode-hook 'helm-gtags-mode)
+  (remove-hook 'c++-mode-hook 'helm-gtags-mode)
+ )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
