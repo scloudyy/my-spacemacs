@@ -26,15 +26,13 @@ values."
      better-defaults
      github
      version-control
-     ;osx
      semantic                           ; too slow
      markdown
      ;(vinegar :variables vinegar-reuse-dired-buffer t)
      org
-     ;prodigy
      search-engine
      (syntax-checking :variables
-                      syntax-checking-enable-tooltips t
+                      syntax-checking-enable-tooltips nil
                       syntax-checking-enable-by-default t)
 
      (spell-checking :variables
@@ -57,10 +55,14 @@ values."
      ;; perspectives
      eyebrowse
      latex
-     ;(colors :variables
-     ;        colors-enable-nyan-cat-progress-bar t)
      (git :variables
-          git-magit-status-fullscreen t)
+          git-magit-status-fullscreen t
+          magit-push-always-verify nil
+          magit-save-repository-buffers 'dontask
+          magit-revert-buffers 'silent
+          magit-refs-show-commit-count 'all
+          ;; This is really creepy magit
+          magit-revision-show-gravatars nil)
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
@@ -75,7 +77,10 @@ values."
               chinese-default-input-method 'pinyin
               chinese-enable-youdao-dict t)
      prodigy
-     github
+     ranger
+     (spacemacs-layouts :variables layouts-enable-autosave t
+                        layouts-autosave-delay 300)
+     extra-langs
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -96,9 +101,16 @@ values."
                                     define-word
                                     solarized-theme
                                     ;; remove mode for python layer
-                                    ;nose
-                                    ;pony-mode
-                                    ;hy-mode
+                                        ;nose
+                                        ;pony-mode
+                                        ;hy-mode
+                                    ;;remove from extra-langs
+			            arduino-mode
+                                    julia-mode
+                                    qml-mode
+                                    scad-mode
+                                    stan-mode
+                                    wolfram-mode
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of

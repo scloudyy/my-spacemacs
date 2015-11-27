@@ -35,6 +35,7 @@
         avy
         hydra
         prodigy
+        elfeed
         ))
 
 ;;configs for EVIL mode
@@ -666,7 +667,7 @@
   (use-package org-octopress
     :init
     (progn
-      (evilify org-octopress-summary-mode org-octopress-summary-mode-map)
+      (evilified-state-evilify org-octopress-summary-mode org-octopress-summary-mode-map)
       (add-hook 'org-octopress-summary-mode-hook
                 #'(lambda () (local-set-key (kbd "q") 'bury-buffer)))
 
@@ -802,3 +803,51 @@
     :kill-signal 'sigkill
     :kill-process-buffer-on-stop t)
 )
+
+(defun scloudyy/init-elfeed ()
+  (use-package elfeed
+    :init
+    (global-set-key (kbd "C-x w") 'elfeed)
+    :defer t
+    :config
+    (progn
+      (setq elfeed-feeds
+            '("http://nullprogram.com/feed/"
+              "http://z.caudate.me/rss/"
+              "http://irreal.org/blog/?feed=rss2"
+              "http://feeds.feedburner.com/LostInTheTriangles"
+              "http://tonybai.com/feed/"
+              "http://planet.emacsen.org/atom.xml"
+              "http://feeds.feedburner.com/emacsblog"
+              "http://blog.binchen.org/rss.xml"
+              "http://oremacs.com/atom.xml"
+              "http://blog.gemserk.com/feed/"
+              "http://www.masteringemacs.org/feed/"
+              "http://t-machine.org/index.php/feed/"
+              "http://gameenginebook.blogspot.com/feeds/posts/default"
+              "http://feeds.feedburner.com/ruanyifeng"
+              "http://coolshell.cn/feed"
+              "http://blog.devtang.com/atom.xml"
+              "http://emacsist.com/rss"
+              "http://puntoblogspot.blogspot.com/feeds/2507074905876002529/comments/default"
+              "http://angelic-sedition.github.io/atom.xml"))
+
+      ;; (evilify elfeed-search-mode elfeed-search-mode-map)
+      (evilified-state-evilify-map elfeed-search-mode-map
+        :mode elfeed-search-mode
+        :bindings
+        "G" 'elfeed-update
+        "g" 'elfeed-search-update--force)
+
+      (defun elfeed-mark-all-as-read ()
+        (interactive)
+        (mark-whole-buffer)
+        (elfeed-search-untag-all-unread))
+
+      (define-key elfeed-search-mode-map (kbd "R") 'elfeed-mark-all-as-read)
+
+      (defadvice elfeed-show-yank (after elfeed-show-yank-to-kill-ring activate compile)
+        "Insert the yanked text from x-selection to kill ring"
+        (kill-new (x-get-selection)))
+
+      (ad-activate 'elfeed-show-yank))))
