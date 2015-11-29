@@ -81,6 +81,9 @@ values."
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
      extra-langs
+     erc
+     gnus
+     emoji
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -105,7 +108,7 @@ values."
                                         ;pony-mode
                                         ;hy-mode
                                     ;;remove from extra-langs
-			            arduino-mode
+                                    arduino-mode
                                     julia-mode
                                     qml-mode
                                     scad-mode
@@ -278,8 +281,6 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-
-  (setq smooth-scroll-margin 1)
 
   (global-visual-line-mode t)
 

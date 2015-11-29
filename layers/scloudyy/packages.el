@@ -36,6 +36,8 @@
         hydra
         prodigy
         elfeed
+        helm-github-stars
+        w3m
         ))
 
 ;;configs for EVIL mode
@@ -851,3 +853,27 @@
         (kill-new (x-get-selection)))
 
       (ad-activate 'elfeed-show-yank))))
+
+(defun scloudyy/init-helm-github-stars ()
+  (use-package helm-github-stars
+    :defer t
+    :config
+    (progn
+      (setq helm-github-stars-username "scloudyy")
+      (setq helm-github-stars-cache-file "~/.emacs.d/.cache/hgs-cache"))))
+
+(defun scloudyy/init-w3m ()
+  ;;http://blog.chinaunix.net/uid-26185912-id-3248452.html
+  ;;http://www.cnblogs.com/FelixLee/archive/2011/04/04/2412601.html
+  (use-package w3m
+    :defer t
+    :config
+    (progn
+      (setq browse-url-browser-function 'w3m-browse-url)
+      (autoload 'w3m "w3m" "interface for w3m on emacs" t)
+      (setq w3m-command-arguments '("-cookie" "-F"))
+      (setq w3m-use-cookies t)
+      (setq w3m-home-page "http://www.baidu.com")
+      ;(require 'mime-w3m)
+      (setq w3m-default-display-inline-image nil)
+      (setq w3m-default-toggle-inline-images nil))))
