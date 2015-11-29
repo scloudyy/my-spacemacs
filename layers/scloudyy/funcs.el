@@ -563,3 +563,10 @@ With PREFIX, cd to project root."
 (define-global-minor-mode
  global-shadowsocks-proxy-mode shadowsocks-proxy-mode shadowsocks-proxy-mode
  :group 'shadowsocks-proxy)
+
+(defun scloudyy/KuaiPan-Sync()
+  (interactive)
+  (shell-command-to-string "cp -r /root/org-notes /home/sclouds/KuaiPan")
+  (shell-command-to-string "cp -r /root/blogs/blog /home/sclouds/KuaiPan")
+  (shell-command-to-string "cp /root/.emacs.d/.cache/pyim-personal.txt /home/sclouds/KuaiPan")
+  (message "Done!"))
