@@ -84,6 +84,7 @@ values."
      erc
      gnus
      emoji
+     fasd
      scloudyy
      )
    ;; List of additional packages that will be installed without being

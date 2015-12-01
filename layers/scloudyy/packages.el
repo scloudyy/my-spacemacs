@@ -330,7 +330,7 @@
             ("j" "Journal Entry"
              entry (file+datetree "~/org-notes/journal.org")
              "* %?"
-             :empty-lines 1)))
+             :empty-lines 0)))
 
     (setq org-tags-match-list-sublevels nil)
     (setq org-agenda-custom-commands

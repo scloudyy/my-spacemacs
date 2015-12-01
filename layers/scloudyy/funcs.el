@@ -484,7 +484,7 @@ With PREFIX, cd to project root."
  global-shadowsocks-proxy-mode shadowsocks-proxy-mode shadowsocks-proxy-mode
  :group 'shadowsocks-proxy)
 
-(defun scloudyy/KuaiPan-Sync()
+(defun scloudyy/KuaiPan-Sync-All()
   (interactive)
   (shell-command-to-string "cp -r /root/org-notes /home/sclouds/KuaiPan")
   (shell-command-to-string "cp -r /root/blogs/blog /home/sclouds/KuaiPan")
@@ -500,4 +500,10 @@ With PREFIX, cd to project root."
 (defun scloudyy/KuaiPan-Sync-Journal()
   (interactive)
   (shell-command-to-string "cp -r /root/org-notes/journal.org /home/sclouds/KuaiPan/org-notes")
+  (message "Done!"))
+
+(defun scloudyy/KuaiPan-Sync-Dict()
+  (interactive)
+  (shell-command-to-string "tar -czf /root/.emacs.d/.cache/emacs-dict.tar.gz /root/.emacs.d/.cache/pyim-bigdict.pyim /root/.emacs.d/.cache/pyim-personal.txt")
+  (shell-command-to-string "cp /root/.emacs.d/.cache/emacs-dict.tar.gz /home/sclouds/KuaiPan")
   (message "Done!"))
