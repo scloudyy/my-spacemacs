@@ -38,6 +38,7 @@
         elfeed
         helm-github-stars
         w3m
+        (dired-mode :location built-in)
         ))
 
 ;;configs for EVIL mode
@@ -834,7 +835,6 @@
               "http://puntoblogspot.blogspot.com/feeds/2507074905876002529/comments/default"
               "http://angelic-sedition.github.io/atom.xml"))
 
-      ;; (evilify elfeed-search-mode elfeed-search-mode-map)
       (evilified-state-evilify-map elfeed-search-mode-map
         :mode elfeed-search-mode
         :bindings
@@ -877,3 +877,137 @@
       ;(require 'mime-w3m)
       (setq w3m-default-display-inline-image nil)
       (setq w3m-default-toggle-inline-images nil))))
+
+(defun scloudyy/init-dired-mode ()
+  (use-package dired-mode
+    :init
+    (progn
+      (defun xah-open-in-external-app ()
+  "Open the current file or dired marked files in external app.
+The app is chosen from your OS's preference.
+
+URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'
+Version 2015-01-26"
+  (interactive)
+  (let* (
+         (ξfile-list
+          (if (string-equal major-mode "dired-mode")
+              (dired-get-marked-files)
+            (list (buffer-file-name))))
+         (ξdo-it-p (if (<= (length ξfile-list) 5)
+                       t
+                     (y-or-n-p "Open more than 5 files? "))))
+
+    (when ξdo-it-p
+      (cond
+       ((string-equal system-type "windows-nt")
+        (mapc
+         (lambda (fPath)
+           (w32-shell-execute "open" (replace-regexp-in-string "/" "\\" fPath t t))) ξfile-list))
+       ((string-equal system-type "darwin")
+        (mapc
+         (lambda (fPath) (shell-command (format "open \"%s\"" fPath)))  ξfile-list))
+       ((string-equal system-type "gnu/linux")
+        (mapc
+         (lambda (fPath) (let ((process-connection-type nil)) (start-process "" nil "xdg-open" fPath))) ξfile-list))))))
+
+      (defun xah-open-in-desktop ()
+        "Show current file in desktop (OS's file manager).
+URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'
+Version 2015-11-30"
+        (interactive)
+        (cond
+         ((string-equal system-type "windows-nt")
+          (w32-shell-execute "explore" (replace-regexp-in-string "/" "\\" default-directory t t)))
+         ((string-equal system-type "darwin") (shell-command "open ."))
+         ((string-equal system-type "gnu/linux")
+          (let (
+                (process-connection-type nil)
+                (openFileProgram (if (file-exists-p "/usr/bin/gvfs-open")
+                                     "/usr/bin/gvfs-open"
+                                   "/usr/bin/xdg-open")))
+            (start-process "" nil openFileProgram "."))
+          ;; (shell-command "xdg-open .") ;; 2013-02-10 this sometimes froze emacs till the folder is closed. ⁖ with nautilus
+          )))
+
+      (defun dired-get-size ()
+        (interactive)
+        (let ((files (dired-get-marked-files)))
+          (with-temp-buffer
+            (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+            (message
+             "Size of all marked files: %s"
+             (progn
+               (re-search-backward "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$")
+               (match-string 1))))))
+
+      (defun dired-start-process (cmd &optional file-list)
+        (interactive
+         (let ((files (dired-get-marked-files
+                       t current-prefix-arg)))
+           (list
+            (dired-read-shell-command "& on %s: "
+                                      current-prefix-arg files)
+            files)))
+        (let (list-switch)
+          (start-process
+           cmd nil shell-file-name
+           shell-command-switch
+           (format
+            "nohup 1>/dev/null 2>/dev/null %s \"%s\""
+            (if (and (> (length file-list) 1)
+                     (setq list-switch
+                           (cadr (assoc cmd dired-filelist-cmd))))
+                (format "%s %s" cmd list-switch)
+              cmd)
+            (mapconcat #'expand-file-name file-list "\" \"")))))
+
+      (defun dired-open-term ()
+        "Open an `ansi-term' that corresponds to current directory."
+        (interactive)
+        (let* ((current-dir (dired-current-directory))
+               (buffer (if (get-buffer "*zshell*")
+                           (switch-to-buffer "*zshell*")
+                         (ansi-term "/bin/zsh" "zshell")))
+               (proc (get-buffer-process buffer)))
+          (term-send-string
+           proc
+           (if (file-remote-p current-dir)
+               (let ((v (tramp-dissect-file-name current-dir t)))
+                 (format "ssh %s@%s\n"
+                         (aref v 1) (aref v 2)))
+             (format "cd '%s'\n" current-dir)))))
+
+      (defun dired-copy-file-here (file)
+        (interactive "fCopy file: ")
+        (copy-file file default-directory))
+
+      ;;dired find alternate file in other buffer
+      (defun my-dired-find-file ()
+        "Open buffer in another window"
+        (interactive)
+        (let ((filename (dired-get-filename nil t)))
+          (if (car (file-attributes filename))
+              (dired-find-alternate-file)
+            (dired-find-file-other-window))))
+
+      ;; do command on all marked file in dired mode
+      (defun zilongshanren/dired-do-command (command)
+        "Run COMMAND on marked files. Any files not already open will be opened.
+After this command has been run, any buffers it's modified will remain
+open and unsaved."
+        (interactive "CRun on marked files M-x ")
+        (save-window-excursion
+          (mapc (lambda (filename)
+                  (find-file filename)
+                  (call-interactively command))
+                (dired-get-marked-files))))
+
+      (defun zilongshanren/dired-up-directory()
+        "goto up directory and resue buffer"
+        (interactive)
+        (find-alternate-file ".."))
+      )
+    :defer t
+  )
+)
