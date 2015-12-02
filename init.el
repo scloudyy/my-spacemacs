@@ -85,6 +85,7 @@ values."
      gnus
      emoji
      fasd
+     smex
      scloudyy
      )
    ;; List of additional packages that will be installed without being

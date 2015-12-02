@@ -67,8 +67,8 @@
 
 (global-set-key (kbd "C-<SPC>") 'toggle-input-method)
 
-(global-set-key (kbd "C-x x") 'helm-M-x)
-
+(global-set-key (kbd "C-x x") 'spacemacs/smex)
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 (eval-after-load 'dired-mode
      (progn
