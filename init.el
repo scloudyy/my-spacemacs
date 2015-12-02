@@ -312,8 +312,12 @@ layers configuration."
   ;;       (gdb-set-window-buffer (gdb-get-buffer-create 'gdb-inferior-io) nil win3))
   ;;     (select-window win0)
   ;;     ))
+  (setq fci-rule-column 80)
+  (setq fci-rule-color "orange")
+  (setq fci-rule-width 2)
 
   (add-hook 'prog-mode-hook #'linum-mode)
+  (add-hook 'prog-mode-hook #'fci-mode)
 
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
