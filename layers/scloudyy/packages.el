@@ -40,6 +40,8 @@
         w3m
         (dired-mode :location built-in)
         helm-ls-git
+        org-download
+        org-tree-slide
         ))
 
 ;;configs for EVIL mode
@@ -331,7 +333,10 @@
             ("j" "Journal Entry"
              entry (file+datetree "~/org-notes/journal.org")
              "* %?"
-             :empty-lines 0)))
+             :empty-lines 0)
+            ("i" "idea" entry (file+headline "~/org-notes/idea.org" "Idea")
+             "* %?\n %U"
+             :empty-lines 1)))
 
     (setq org-tags-match-list-sublevels nil)
     (setq org-agenda-custom-commands
@@ -1019,3 +1024,14 @@ open and unsaved."
     (progn
       ;;beautify-helm buffer when long file name is present
       (setq helm-ls-git-show-abs-or-relative 'relative))))
+
+(defun scloudyy/init-org-download ()
+  (use-package org-download
+    :defer t
+    :init
+    (org-download-enable)))
+
+(defun scloudyy/init-org-tree-slide ()
+  (use-package org-tree-slide
+    :init
+    (evil-leader/set-key "oto" 'org-tree-slide-mode)))
