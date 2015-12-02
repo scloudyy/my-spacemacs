@@ -39,7 +39,6 @@
         helm-github-stars
         w3m
         (dired-mode :location built-in)
-        beacon
         helm-ls-git
         ))
 
@@ -1013,20 +1012,6 @@ open and unsaved."
     :defer t
   )
 )
-
-(defun scloudyy/init-beacon ()
-  (use-package beacon
-    :init
-    (progn
-      (spacemacs|add-toggle beacon
-        :status beacon-mode
-        :on (beacon-mode)
-        :off (beacon-mode -1)
-        :documentation "Enable point highlighting after scrolling"
-        :evil-leader "otb")
-
-      (spacemacs/toggle-beacon-on))
-    :config (spacemacs|hide-lighter beacon-mode)))
 
 (defun scloudyy/init-helm-ls-git ()
   (use-package helm-ls-git
