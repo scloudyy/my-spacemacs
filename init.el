@@ -52,8 +52,7 @@ values."
      ;; deft
      ;racket
      gtags
-     ;; perspectives
-     eyebrowse
+     ;;eyebrowse
      latex
      (git :variables
           git-magit-status-fullscreen t
@@ -85,6 +84,7 @@ values."
      gnus
      emoji
      fasd
+     pandoc
      scloudyy
      )
    ;; List of additional packages that will be installed without being
