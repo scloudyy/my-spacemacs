@@ -85,7 +85,6 @@ values."
      gnus
      emoji
      fasd
-     smex
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -318,7 +317,7 @@ layers configuration."
   (setq fci-rule-width 2)
 
   (add-hook 'prog-mode-hook #'linum-mode)
-  (add-hook 'prog-mode-hook #'fci-mode)
+  ;;(add-hook 'prog-mode-hook #'fci-mode)
 
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)

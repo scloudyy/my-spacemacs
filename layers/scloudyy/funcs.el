@@ -502,6 +502,11 @@ With PREFIX, cd to project root."
   (shell-command-to-string "cp -r /root/org-notes/journal.org /home/sclouds/KuaiPan/org-notes")
   (message "Done!"))
 
+(defun scloudyy/KuaiPan-Sync-Ide()
+  (interactive)
+  (shell-command-to-string "cp -r /root/org-notes/idea.org /home/sclouds/KuaiPan/org-notes")
+  (message "Done!"))
+
 (defun scloudyy/KuaiPan-Sync-Dict()
   (interactive)
   (shell-command-to-string "tar -czf /root/.emacs.d/.cache/emacs-dict.tar.gz /root/.emacs.d/.cache/pyim-bigdict.pyim /root/.emacs.d/.cache/pyim-personal.txt")

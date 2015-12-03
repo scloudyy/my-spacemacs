@@ -42,6 +42,8 @@
         helm-ls-git
         org-download
         org-tree-slide
+        (occur-mode :location built-in)
+        counsel
         ))
 
 ;;configs for EVIL mode
@@ -571,11 +573,10 @@
   (use-package swiper
     :init
     (progn
+      (setq ivy-use-virtual-buffers t)
       (setq ivy-display-style 'fancy)
 
       ;; http://oremacs.com/2015/04/16/ivy-mode/
-      ;; (ivy-mode -1)
-      ;; (setq magit-completing-read-function 'ivy-completing-read)
 
       ;; http://oremacs.com/2015/04/19/git-grep-ivy/
       (defun counsel-git-grep-function (string &optional _pred &rest _u)
@@ -600,15 +601,27 @@
             (find-file (car lst))
             (goto-char (point-min))
             (forward-line (1- (string-to-number (cadr lst)))))))
+
+
+      (use-package recentf
+        :config
+        (setq recentf-exclude
+              '("COMMIT_MSG" "COMMIT_EDITMSG" "github.*txt$"
+                ".*png$"))
+        (setq recentf-max-saved-items 60))
+      (evilified-state-evilify ivy-occur-mode ivy-occur-mode-map)
       (use-package ivy
         :defer t
         :config
         (progn
+          (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
+          (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
           (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
           (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
 
       (define-key global-map (kbd "C-s") 'swiper)
-      (setq ivy-use-virtual-buffers t)
+      (ivy-mode t)
+      (evil-leader/set-key (kbd "bb") 'ivy-switch-buffer)
       (global-set-key (kbd "C-c C-r") 'ivy-resume)
       (global-set-key (kbd "C-c j") 'counsel-git-grep))))
 
@@ -839,7 +852,8 @@
               "http://blog.devtang.com/atom.xml"
               "http://emacsist.com/rss"
               "http://puntoblogspot.blogspot.com/feeds/2507074905876002529/comments/default"
-              "http://angelic-sedition.github.io/atom.xml"))
+              "http://angelic-sedition.github.io/atom.xml"
+              "http://ergoemacs.org/emacs/blog.xml"))
 
       (evilified-state-evilify-map elfeed-search-mode-map
         :mode elfeed-search-mode
@@ -1035,3 +1049,32 @@ open and unsaved."
   (use-package org-tree-slide
     :init
     (evil-leader/set-key "oto" 'org-tree-slide-mode)))
+
+(defun scloudyy/init-counsel ()
+  (use-package counsel
+    :init
+    (progn
+      (global-set-key (kbd "C-h v") 'counsel-describe-variable)
+      (global-set-key (kbd "C-h f") 'counsel-describe-function)
+      (evil-leader/set-key "hdv" 'counsel-describe-variable)
+      (evil-leader/set-key "hdf" 'counsel-describe-function)
+      (bind-key* "M-x" 'counsel-M-x)
+      (evil-leader/set-key dotspacemacs-command-key 'counsel-M-x)
+      )))
+
+(defun scloudyy/init-occur-mode ()
+  (defun occur-dwim ()
+    "Call `occur' with a sane default."
+    (interactive)
+    (push (if (region-active-p)
+              (buffer-substring-no-properties
+               (region-beginning)
+               (region-end))
+            (let ((sym (thing-at-point 'symbol)))
+              (when (stringp sym)
+                (regexp-quote sym))))
+          regexp-history)
+    (call-interactively 'occur))
+  (bind-key* "M-s o" 'occur-dwim)
+  (evilified-state-evilify occur-mode occur-mode-map
+    "RET" 'occur-mode-goto-occurrence))
