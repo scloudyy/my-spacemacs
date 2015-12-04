@@ -78,3 +78,6 @@
 (define-key dired-mode-map (kbd "`") 'dired-open-term)
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 (define-key dired-mode-map (kbd "z") 'dired-get-size)
+
+(global-set-key (kbd "C-M-_") 'spacemacs/zoom-frm-out)
+(global-set-key (kbd "C-M-+") 'spacemacs/zoom-frm-in)

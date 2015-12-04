@@ -505,6 +505,7 @@ With PREFIX, cd to project root."
 (defun scloudyy/KuaiPan-Sync-Ide()
   (interactive)
   (shell-command-to-string "cp -r /root/org-notes/idea.org /home/sclouds/KuaiPan/org-notes")
+  ;; (async-shell-command)
   (message "Done!"))
 
 (defun scloudyy/KuaiPan-Sync-Dict()

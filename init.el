@@ -285,6 +285,15 @@ layers configuration."
 
   (global-visual-line-mode t)
 
+  (add-hook 'prog-mode-hook
+    (lambda ()
+      (when (> (buffer-size) 10000)
+        (turn-off-show-smartparens-mode)
+        (linum-mode nil))))
+
+  ;(setq truncate-lines nil)
+  ;(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+  ;(add-hook 'prog-mode-hook (lambda () (setq truncate-lines nil)))
   ;; (defadvice gdb-setup-windows (after my-setup-gdb-windows activate)
   ;;   "my gdb UI"
   ;;   (gdb-get-buffer-create 'gdb-stack-buffer)
@@ -317,7 +326,7 @@ layers configuration."
   (setq fci-rule-width 2)
 
   (add-hook 'prog-mode-hook #'linum-mode)
-  ;;(add-hook 'prog-mode-hook #'fci-mode)
+  ;(add-hook 'prog-mode-hook #'fci-mode)
 
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
