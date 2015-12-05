@@ -254,7 +254,7 @@
     (require 'org-habit)
 
     ;; define the refile targets
-    (setq org-agenda-files (quote ("~/org-notes" )))
+    (setq org-agenda-files (quote ("/home/sclouds/KuaiPan/org-notes" )))
     (setq org-refile-use-outline-path 'file)
     (setq org-outline-path-complete-in-steps nil)
     (setq org-refile-targets
@@ -290,7 +290,7 @@
 
     (add-to-list 'auto-mode-alist '("\\.org\\’" . org-mode))
 
-    (setq org-mobile-directory "~/org-notes/org")
+    (setq org-mobile-directory "/home/sclouds/KuaiPan/org-notes/org")
 
 
     (setq org-todo-keywords
@@ -308,35 +308,35 @@
     (setq org-clock-out-remove-zero-time-clocks t) ;; Show the clocked-in task - if any - in the header line
 
 
-    (setq org-default-notes-file "~/org-notes/gtd.org")
+    (setq org-default-notes-file "/home/sclouds/KuaiPan/org-notes/gtd.org")
 
     ;; the %i would copy the selected text into the template
     ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
     ;;add multi-file journal
     (setq org-capture-templates
-          '(("t" "Todo" entry (file+headline "~/org-notes/gtd.org" "Daily Tasks")
+          '(("t" "Todo" entry (file+headline "/home/sclouds/KuaiPan/org-notes/gtd.org" "Daily Tasks")
              "* TODO %?\n  %i\n"
              :empty-lines 1)
-            ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+            ("n" "notes" entry (file+headline "/home/sclouds/KuaiPan/org-notes/notes.org" "Quick notes")
              "* TODO %?\n  %i\n %U"
              :empty-lines 1)
-            ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
+            ("b" "Blog Ideas" entry (file+headline "/home/sclouds/KuaiPan/org-notes/notes.org" "Blog Ideas")
              "* TODO %?\n  %i\n %U"
              :empty-lines 1)
-            ("w" "work" entry (file+headline "~/org-notes/gtd.org" "Lab Or School")
+            ("w" "work" entry (file+headline "/home/sclouds/KuaiPan/org-notes/gtd.org" "Lab Or School")
              "* TODO %?\n  %i\n %U"
              :empty-lines 1)
-            ("c" "Chrome" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+            ("c" "Chrome" entry (file+headline "/home/sclouds/KuaiPan/org-notes/notes.org" "Quick notes")
              "* TODO %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
              :empty-lines 1)
-            ("l" "links" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+            ("l" "links" entry (file+headline "/home/sclouds/KuaiPan/org-notes/notes.org" "Quick notes")
              "* TODO %?\n  %i\n %a \n %U"
              :empty-lines 1)
             ("j" "Journal Entry"
-             entry (file+datetree "~/org-notes/journal.org")
+             entry (file+datetree "/home/sclouds/KuaiPan/org-notes/journal.org")
              "* %?"
              :empty-lines 0)
-            ("i" "idea" entry (file+headline "~/org-notes/idea.org" "Idea")
+            ("i" "idea" entry (file+headline "/home/sclouds/KuaiPan/org-notes/idea.org" "Idea")
              "* %?\n %U"
              :empty-lines 1)))
 
@@ -526,9 +526,9 @@
     (setq org-publish-project-alist
           `(
             ("blog-notes"
-             :base-directory "~/org-notes"
+             :base-directory "/home/sclouds/KuaiPan/org-notes"
              :base-extension "org"
-             :publishing-directory "~/org-notes/public_html/"
+             :publishing-directory "/home/sclouds/KuaiPan/org-notes/public_html/"
 
              :recursive t
              :html-head , zilongshanren-website-html-blog-head
@@ -548,9 +548,9 @@
              :sitemap-file-entry-format "%t" ; %d to output date, we don't need date here
              )
             ("blog-static"
-             :base-directory "~/org-notes"
+             :base-directory "/home/sclouds/KuaiPan/org-notes"
              :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-             :publishing-directory "~/org-notes/public_html/"
+             :publishing-directory "/home/sclouds/KuaiPan/org-notes/public_html/"
              :recursive t
              :publishing-function org-publish-attachment
              )
