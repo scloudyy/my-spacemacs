@@ -486,26 +486,8 @@ With PREFIX, cd to project root."
 
 (defun scloudyy/KuaiPan-Sync-All()
   (interactive)
-  (shell-command-to-string "cp -r /root/org-notes /home/sclouds/KuaiPan")
-  (shell-command-to-string "cp -r /root/blogs/blog /home/sclouds/KuaiPan")
   (shell-command-to-string "tar -czf /root/.emacs.d/.cache/emacs-dict.tar.gz /root/.emacs.d/.cache/pyim-bigdict.pyim /root/.emacs.d/.cache/pyim-personal.txt")
   (shell-command-to-string "cp /root/.emacs.d/.cache/emacs-dict.tar.gz /home/sclouds/KuaiPan")
-  (message "Done!"))
-
-(defun scloudyy/KuaiPan-Sync-Blogs()
-  (interactive)
-  (shell-command-to-string "cp -r /root/blogs/blog /home/sclouds/KuaiPan")
-  (message "Done!"))
-
-(defun scloudyy/KuaiPan-Sync-Journal()
-  (interactive)
-  (shell-command-to-string "cp -r /root/org-notes/journal.org /home/sclouds/KuaiPan/org-notes")
-  (message "Done!"))
-
-(defun scloudyy/KuaiPan-Sync-Ide()
-  (interactive)
-  (shell-command-to-string "cp -r /root/org-notes/idea.org /home/sclouds/KuaiPan/org-notes")
-  ;; (async-shell-command)
   (message "Done!"))
 
 (defun scloudyy/KuaiPan-Sync-Dict()
@@ -513,3 +495,7 @@ With PREFIX, cd to project root."
   (shell-command-to-string "tar -czf /root/.emacs.d/.cache/emacs-dict.tar.gz /root/.emacs.d/.cache/pyim-bigdict.pyim /root/.emacs.d/.cache/pyim-personal.txt")
   (shell-command-to-string "cp /root/.emacs.d/.cache/emacs-dict.tar.gz /home/sclouds/KuaiPan")
   (message "Done!"))
+
+(defun scloudyy/Sync-Config()
+  (interactive)
+  (shell-command-to-string "cp ~/.zshrc ~/Github/my-config/zsh/"))
