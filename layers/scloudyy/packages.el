@@ -44,6 +44,7 @@
         org-tree-slide
         (occur-mode :location built-in)
         counsel
+        mu4e
         ))
 
 ;;configs for EVIL mode
@@ -621,7 +622,7 @@
 
       (define-key global-map (kbd "C-s") 'swiper)
       (ivy-mode t)
-      (evil-leader/set-key (kbd "bb") 'ivy-switch-buffer)
+      ;;(evil-leader/set-key (kbd "bb") 'ivy-switch-buffer)
       (global-set-key (kbd "C-c C-r") 'ivy-resume)
       (global-set-key (kbd "C-c j") 'counsel-git-grep))))
 
@@ -1078,3 +1079,34 @@ open and unsaved."
   (bind-key* "M-s o" 'occur-dwim)
   (evilified-state-evilify occur-mode occur-mode-map
     "RET" 'occur-mode-goto-occurrence))
+
+(defun scloudyy/post-init-mu4e()
+  );;; Set up some common mu4e variables
+(setq mu4e-maildir "~/Maildir"         ;; top-level Maildir
+      mu4e-trash-folder "/Trash"       ;; trashed messages
+      mu4e-refile-folder "/Archive"    ;; saved messages
+      mu4e-drafts-folder "/Drafts"     ;; unfinished messages
+      mu4e-sent-folder   "/Sent"       ;; folder for sent messages
+      mu4e-get-mail-command "mbsync -a"
+      mu4e-update-interval nil
+      mu4e-compose-signature-auto-include nil
+      mu4e-view-show-images t
+      mu4e-view-show-addresses t)
+
+;;; Mail directory shortcuts
+(setq mu4e-maildir-shortcuts
+      '(("/gmail/INBOX" . ?g)
+        ("/college/INBOX" . ?c)))
+
+;;; Bookmarks
+(setq mu4e-bookmarks
+      `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+        ("date:today..now" "Today's messages" ?t)
+        ("date:7d..now" "Last 7 days" ?w)
+        ("mime:image/*" "Messages with images" ?p)
+        (,(mapconcat 'identity
+                     (mapcar
+                      (lambda (maildir)
+                        (concat "maildir:" (car maildir)))
+                      mu4e-maildir-shortcuts) " OR ")
+         "All inboxes" ?i)))

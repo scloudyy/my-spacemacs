@@ -85,6 +85,8 @@ values."
      emoji
      fasd
      pandoc
+     (mu4e :variables
+           mu4e-installation-path "/usr/share/emacs/site-lisp")
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -243,7 +245,7 @@ values."
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling t
+   dotspacemacs-smooth-scrolling nil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
