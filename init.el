@@ -28,7 +28,6 @@ values."
      version-control
      semantic                           ; too slow
      markdown
-     ;(vinegar :variables vinegar-reuse-dired-buffer t)
      org
      search-engine
      (syntax-checking :variables
@@ -37,22 +36,11 @@ values."
 
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
-     yaml
-     ;; (ruby :variables ruby-version-manager 'rvm)
      python
-     ;; lua
-     ;; (clojure :variables clojure-enable-fancify-symbols t)
-     ;html
-     ;javascript
-     ;restclient
      emacs-lisp
      dash
-     ;emoji
      ycmd
-     ;; deft
-     ;racket
      gtags
-     ;;eyebrowse
      latex
      (git :variables
           git-magit-status-fullscreen t
@@ -98,7 +86,7 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     ;;remove from spacemacs distribution
-                                    ;; neotree
+                                    neotree
                                     leuven-theme
                                     gh-md
                                     evil-lisp-state
@@ -217,7 +205,7 @@ values."
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
    ;; (default 'bottom)
-   dotspacemacs-which-key-position 'right
+   dotspacemacs-which-key-position 'bottom
    ;; If non nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
@@ -284,6 +272,9 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0)
 
   (global-visual-line-mode t)
 
