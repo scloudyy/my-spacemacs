@@ -25,7 +25,6 @@ values."
      ;; --------------------------------------------------------
      better-defaults
      github
-     ;;version-control
      semantic                           ; too slow
      markdown
      org
@@ -37,7 +36,6 @@ values."
                      spell-checking-enable-by-default nil)
      python
      emacs-lisp
-     ;; dash
      ycmd
      gtags
      latex
@@ -67,8 +65,6 @@ values."
      spacemacs-layout
      extra-langs
      erc
-     ;;gnus
-     ;;emoji
      fasd
      pandoc
      (mu4e :variables
@@ -139,7 +135,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
+   dotspacemacs-themes '(
+                         monokai
                          spacemacs-dark
                          solarized-night
                          sanityinc-tomorrow-eighties

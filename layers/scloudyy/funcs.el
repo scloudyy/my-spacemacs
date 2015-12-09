@@ -493,9 +493,23 @@ With PREFIX, cd to project root."
 (defun scloudyy/KuaiPan-Sync-Dict()
   (interactive)
   (shell-command-to-string "tar -czf /root/.emacs.d/.cache/emacs-dict.tar.gz /root/.emacs.d/.cache/pyim-bigdict.pyim /root/.emacs.d/.cache/pyim-personal.txt")
-  (shell-command-to-string "cp /root/.emacs.d/.cache/emacs-dict.tar.gz /home/sclouds/KuaiPan")
+  (shell-command-to-string "mv /root/.emacs.d/.cache/emacs-dict.tar.gz /home/sclouds/KuaiPan")
   (message "Done!"))
 
 (defun scloudyy/Sync-Config()
   (interactive)
   (shell-command-to-string "cp ~/.zshrc ~/Github/my-config/zsh/"))
+
+
+(defun slcoudyy/Nil-Chinese()
+  (interactive)
+  (if (equal current-input-method "chinese-pyim")
+      ((toggle-input-method)
+       (message "change input method"))
+    (message "already En"))
+
+;; (defun scloudyy/Safe-helm-M-x()
+;;   (interactive)
+;;   (scloudyy/Nil-Chinese)
+;;   (helm-M-x)
+;;   )
