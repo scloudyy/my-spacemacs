@@ -25,7 +25,7 @@ values."
      ;; --------------------------------------------------------
      better-defaults
      github
-     version-control
+     ;;version-control
      semantic                           ; too slow
      markdown
      org
@@ -38,7 +38,7 @@ values."
                      spell-checking-enable-by-default nil)
      python
      emacs-lisp
-     dash
+     ;; dash
      ycmd
      gtags
      latex
@@ -65,12 +65,11 @@ values."
               chinese-enable-youdao-dict t)
      prodigy
      ranger
-     (spacemacs-layouts :variables layouts-enable-autosave t
-                        layouts-autosave-delay 300)
+     spacemacs-layout
      extra-langs
      erc
-     gnus
-     emoji
+     ;;gnus
+     ;;emoji
      fasd
      pandoc
      (mu4e :variables
