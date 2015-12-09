@@ -33,7 +33,6 @@ values."
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil
                       syntax-checking-enable-by-default t)
-
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      python
@@ -142,11 +141,8 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(monokai
                          spacemacs-dark
-                         solarized-light
-                         leuven
-                         sanityinc-tomorrow-day
+                         solarized-night
                          sanityinc-tomorrow-eighties
-                         spacemacs-light
                          solarized-dark
                          zenburn
                          )
