@@ -8,11 +8,8 @@
   :documentation "Enable iimage mode"
   :evil-leader "Ti")
 
-(add-hook 'prog-mode-hook 'spacemacs/highlight-TODO-words)
-
 ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
 (require 'whitespace)
-
 
 (setq whitespace-line-column fill-column) ;; limit line length
 ;;https://www.reddit.com/r/emacs/comments/2keh6u/show_tabs_and_trailing_whitespaces_only/

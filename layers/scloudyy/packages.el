@@ -673,6 +673,7 @@
   (setq ycmd-request-message-level -1)
   (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
   (define-key c++-mode-map (kbd "M-[") 'ycmd-goto)
+  (define-key c++-mode-map (kbd "C-M-y") 'ycmd-parse-buffer)
   )
 
 (defun scloudyy/post-init-whitespace ()
@@ -1059,7 +1060,7 @@ open and unsaved."
       (global-set-key (kbd "C-h f") 'counsel-describe-function)
       (evil-leader/set-key "hdv" 'counsel-describe-variable)
       (evil-leader/set-key "hdf" 'counsel-describe-function)
-      (bind-key* "M-x" 'counsel-M-x)
+      ;(bind-key* "M-x" 'counsel-M-x)
       (evil-leader/set-key dotspacemacs-command-key 'counsel-M-x)
       )))
 

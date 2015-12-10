@@ -1,6 +1,6 @@
 ;;; keybindings.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren 
+;; Copyright (c) 2015-2016 zilongshanren
 ;;
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/spacemacs-private
@@ -42,7 +42,8 @@
 
 (global-set-key (kbd "s-l") 'goto-line)
 (global-set-key (kbd "s-s") 'save-buffer)
-(global-set-key (kbd "C-`") 'toggle-input-method)
+
+(global-set-key (kbd "C-`") 'set-mark-command)
 
 (global-set-key (kbd "<f5>") 'zilongshanren/run-current-file)
 
