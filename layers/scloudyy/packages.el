@@ -30,8 +30,8 @@
         whitespace
         org-octopress
         chinese-pyim
-        visual-regexp
-        visual-regexp-steroids
+        ;visual-regexp
+        ;visual-regexp-steroids
         avy
         hydra
         prodigy
@@ -40,11 +40,12 @@
         w3m
         (dired-mode :location built-in)
         helm-ls-git
-        org-download
-        org-tree-slide
+        ;org-download
+        ;org-tree-slide
         (occur-mode :location built-in)
         counsel
         mu4e
+        persp-mode
         ))
 
 ;;configs for EVIL mode
@@ -1111,3 +1112,9 @@ open and unsaved."
                         (concat "maildir:" (car maildir)))
                       mu4e-maildir-shortcuts) " OR ")
          "All inboxes" ?i)))
+
+(defun scloudyy/post-init-persp-mode ()
+  (spacemacs|define-custom-layout "@C++"
+    :binding "c"
+    :body
+    ))
