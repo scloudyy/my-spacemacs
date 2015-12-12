@@ -35,7 +35,7 @@
         avy
         hydra
         prodigy
-        elfeed
+;        elfeed
         helm-github-stars
         w3m
         (dired-mode :location built-in)
@@ -43,7 +43,7 @@
         ;org-download
         ;org-tree-slide
         (occur-mode :location built-in)
-        counsel
+ ;       counsel
         mu4e
         persp-mode
         ))

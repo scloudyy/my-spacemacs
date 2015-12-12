@@ -18,97 +18,35 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-        ;; --------------------------------------------------------
-     ;; Example of useful layers you may want to use right away
-     ;; Uncomment a layer name and press C-c C-c to install it
-     ;;  Guide key
-     ;; --------------------------------------------------------
-     better-defaults
-     github
-     semantic                           ; too slow
-     markdown
-     org
-     search-engine
-     (syntax-checking :variables
-                      syntax-checking-enable-tooltips nil
-                      syntax-checking-enable-by-default t)
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil)
-     python
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     ;; auto-completion
+     ;; better-defaults
      emacs-lisp
-     ycmd
-     gtags
-     latex
-     (git :variables
-          git-magit-status-fullscreen t
-          magit-push-always-verify nil
-          magit-save-repository-buffers 'dontask
-          magit-revert-buffers 'silent
-          magit-refs-show-commit-count 'all
-          ;; This is really creepy magit
-          magit-revision-show-gravatars nil)
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables
-                      auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup nil)
-     (shell :variables
-            shell-default-height 60
-            shell-default-shell 'ansi-term
-            shell-default-term-shell "/bin/zsh")
-     (chinese :variables
-              chinese-default-input-method 'pinyin
-              chinese-enable-youdao-dict t)
-     prodigy
-     ranger
-     spacemacs-layout
-     extra-langs
-     erc
-     fasd
-     pandoc
-     (mu4e :variables
-           mu4e-installation-path "/usr/share/emacs/site-lisp")
-     elfeed
-     deft
-     scloudyy
+     ;; git
+     ;; markdown
+     ;; org
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
+     ;; spell-checking
+     ;; syntax-checking
+     ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
-   ;; configuration in `dotspacemacs/config'.
+   ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(magit-gh-pulls
-                                    magit-gitflow
-                                    ;;remove from spacemacs distribution
-                                    neotree
-                                    leuven-theme
-                                    gh-md
-                                    evil-lisp-state
-                                    spray
-                                    evil-tutor
-                                    define-word
-                                    solarized-theme
-                                    ;; remove mode for python layer
-                                        ;nose
-                                        ;pony-mode
-                                        ;hy-mode
-                                    ;;remove from extra-langs
-                                    arduino-mode
-                                    julia-mode
-                                    qml-mode
-                                    scad-mode
-                                    stan-mode
-                                    wolfram-mode
-                                    )
+   dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
    dotspacemacs-delete-orphan-packages t))
-
-
-
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -127,15 +65,15 @@ values."
    ;; (default t)
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
-   dotspacemacs-elpa-timeout 100
+   dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. (default t)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update t
    ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+   dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -148,21 +86,20 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects bookmark)
+   dotspacemacs-startup-lists '(recents projects)
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         monokai
-                         spacemacs-dark
-                         solarized-night
-                         sanityinc-tomorrow-eighties
+   dotspacemacs-themes '(spacemacs-dark
+                         spacemacs-light
+                         solarized-light
                          solarized-dark
-                         zenburn
-                         )
+                         leuven
+                         monokai
+                         zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -239,7 +176,7 @@ values."
    ;; If non nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
-   dotspacemacs-loading-progress-bar nil
+   dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
    dotspacemacs-fullscreen-at-startup nil
@@ -249,7 +186,7 @@ values."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -263,7 +200,7 @@ values."
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling nil
+   dotspacemacs-smooth-scrolling t
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
@@ -294,98 +231,16 @@ values."
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put any
-user code."
-  ;; https://github.com/syl20bnr/spacemacs/issues/2705
-  ;; (setq tramp-mode nil)
-  (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-
-  ;; ss proxy. But it will cause anacond-mode failed.
-  (setq socks-server '("Default server" "127.0.0.1" 1080 5))
-  ;;I have changed this settings to shadowsocks minor mode
-  ;; (setq url-gateway-method 'socks)
+It is called immediately after `dotspacemacs/init'.  You are free to put almost any
+user code here.  The exception is org related code, which should be placed in
+`dotspacemacs/user-config'."
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function.
- This function is called at the very end of Spacemacs initialization after
-layers configuration."
+  "Configuration function for user code.
+This function is called at the very end of Spacemacs initialization after
+layers configuration. You are free to put any user code."
+  )
 
-  (setq split-height-threshold nil)
-  (setq split-width-threshold 0)
-
-  (global-visual-line-mode t)
-
-  (add-hook 'prog-mode-hook
-    (lambda ()
-      (when (> (buffer-size) 10000)
-        (turn-off-show-smartparens-mode)
-        (linum-mode nil))))
-
-  ;(setq truncate-lines nil)
-  ;(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
-  ;(add-hook 'prog-mode-hook (lambda () (setq truncate-lines nil)))
-  ;; (defadvice gdb-setup-windows (after my-setup-gdb-windows activate)
-  ;;   "my gdb UI"
-  ;;   (gdb-get-buffer-create 'gdb-stack-buffer)
-  ;;   (set-window-dedicated-p (selected-window) nil)
-  ;;   (switch-to-buffer gud-comint-buffer)
-  ;;   (delete-other-windows)
-  ;;   (let ((win0 (selected-window))
-  ;;         (win1 (split-window nil nil 'left))      ;code and output
-  ;;         (win2 (split-window-below (/ (* (window-height) 2) 3)))     ;stack
-  ;;         )
-  ;;     (select-window win2)
-  ;;     (gdb-set-window-buffer (gdb-stack-buffer-name))
-  ;;     (select-window win1)
-  ;;     (set-window-buffer
-  ;;      win1
-  ;;      (if gud-last-last-frame
-  ;;          (gud-find-file (car gud-last-last-frame))
-  ;;        (if gdb-main-file
-  ;;            (gud-find-file gdb-main-file)
-  ;;          ;; Put buffer list in window if we
-  ;;          ;; can't find a source file.
-  ;;          (list-buffers-noselect))))
-  ;;     (setq gdb-source-window (selected-window))
-  ;;     (let ((win3 (split-window nil (/ (* (window-height) 3) 4)))) ;io
-  ;;       (gdb-set-window-buffer (gdb-get-buffer-create 'gdb-inferior-io) nil win3))
-  ;;     (select-window win0)
-  ;;     ))
-  (setq fci-rule-column 80)
-  (setq fci-rule-color "orange")
-  (setq fci-rule-width 2)
-
-  (add-hook 'prog-mode-hook #'linum-mode)
-  ;(add-hook 'prog-mode-hook #'fci-mode)
-
-  ;;解决org表格里面中英文对齐的问题
-  (when (configuration-layer/layer-usedp 'chinese)
-    (when (spacemacs/system-is-mac)
-      (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
-
-  (global-company-mode t)
-
-  ;;currently this key map must be put in user-config to override the defaults
-  (evil-leader/set-key "pf" 'helm-ls-git-ls)
-
-  ;; (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
-
-  (when (configuration-layer/layer-usedp 'vinegar)
-    (evilify dired-mode dired-mode-map
-             (kbd "C-k") 'zilongshanren/dired-up-directory
-             (kbd "C") 'dired-do-copy))
-
-  (setq company-backends-web-mode '((company-dabbrev-code
-                                     company-keywords
-                                     company-etags)
-                                    company-files company-dabbrev))
-
-  (spacemacs|defvar-company-backends sh-mode)
-  (spacemacs|add-company-hook sh-mode)
-
-  (remove-hook 'c-mode-hook 'helm-gtags-mode)
-  (remove-hook 'c++-mode-hook 'helm-gtags-mode)
-  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-  (load custom-file 'no-error 'no-message)
- )
+;; Do not write anything past this comment. This is where Emacs will
+;; auto-generate custom variable definitions.
