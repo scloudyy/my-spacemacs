@@ -89,3 +89,5 @@
 
 (global-set-key (kbd "C-;") 'swiper)
 (bind-key* "C-s" 'isearch-forward)
+
+(evil-leader/set-key "ol" 'helm-semantic-or-imenu)

@@ -35,7 +35,6 @@
         avy
         hydra
         prodigy
-;        elfeed
         helm-github-stars
         w3m
         (dired-mode :location built-in)
