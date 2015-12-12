@@ -45,6 +45,7 @@
  ;       counsel
         mu4e
         persp-mode
+        engine-mode
         ))
 
 ;;configs for EVIL mode
@@ -1117,3 +1118,10 @@ open and unsaved."
     :binding "c"
     :body
     ))
+
+(defun scloudyy/post-init-engine-mode()
+  (push '(baidu
+          :name "Baidu"
+          :url "https://www.baidu.com/s?wd=%s")
+        search-engine-alist)
+  )
