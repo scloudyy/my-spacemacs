@@ -59,19 +59,18 @@ values."
             shell-default-term-shell "/bin/zsh")
      (chinese :variables
               chinese-default-input-method 'pinyin
-              chinese-enable-youdao-dict t)
+              chinese-enable-youdao-dict t
+              chinese-enable-fcitx nil)
      prodigy
      ranger
      spacemacs-layout
      extra-langs
-     erc
      fasd
      pandoc
-     (mu4e :variables
-           mu4e-installation-path "/usr/share/emacs/site-lisp")
+     ;(mu4e :variables
+     ;      mu4e-installation-path "/usr/share/emacs/site-lisp")
      (elfeed :variables
              rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed.org"))
-     ;; deft
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -159,9 +158,9 @@ values."
    dotspacemacs-themes '(
                          monokai
                          spacemacs-dark
+                         solarized-dark
                          solarized-night
                          sanityinc-tomorrow-eighties
-                         solarized-dark
                          zenburn
                          )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -200,10 +199,10 @@ values."
    ;; If non nil `Y' is remapped to `y$'. (default t)
    dotspacemacs-remap-Y-to-y$ t
    ;; Name of the default layout (default "Default")
-   dotspacemacs-default-layout-name "Default"
+   dotspacemacs-default-layout-name "Scloudyy"
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   dotspacemacs-display-default-layout t
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil

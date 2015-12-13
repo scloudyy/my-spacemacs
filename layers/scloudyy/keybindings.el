@@ -87,7 +87,8 @@
 (global-set-key (kbd "C-M-_") 'spacemacs/zoom-frm-out)
 (global-set-key (kbd "C-M-+") 'spacemacs/zoom-frm-in)
 
-(global-set-key (kbd "C-;") 'swiper)
+(global-set-key (kbd "C-;") 'helm-swoop)
+(global-set-key (kbd "C-:") 'swiper)
 (bind-key* "C-s" 'isearch-forward)
 
 (evil-leader/set-key "ol" 'helm-semantic-or-imenu)
