@@ -46,6 +46,7 @@
         mu4e
         persp-mode
         engine-mode
+        beacon
         ))
 
 ;;configs for EVIL mode
@@ -829,54 +830,6 @@
     :kill-process-buffer-on-stop t)
 )
 
-(defun scloudyy/init-elfeed ()
-  (use-package elfeed
-    :init
-    (global-set-key (kbd "C-x w") 'elfeed)
-    :defer t
-    :config
-    (progn
-      (setq elfeed-feeds
-            '("http://nullprogram.com/feed/"
-              "http://z.caudate.me/rss/"
-              "http://irreal.org/blog/?feed=rss2"
-              "http://feeds.feedburner.com/LostInTheTriangles"
-              "http://tonybai.com/feed/"
-              "http://planet.emacsen.org/atom.xml"
-              "http://feeds.feedburner.com/emacsblog"
-              "http://blog.binchen.org/rss.xml"
-              "http://oremacs.com/atom.xml"
-              "http://blog.gemserk.com/feed/"
-              "http://www.masteringemacs.org/feed/"
-              "http://t-machine.org/index.php/feed/"
-              "http://gameenginebook.blogspot.com/feeds/posts/default"
-              "http://feeds.feedburner.com/ruanyifeng"
-              "http://coolshell.cn/feed"
-              "http://blog.devtang.com/atom.xml"
-              "http://emacsist.com/rss"
-              "http://puntoblogspot.blogspot.com/feeds/2507074905876002529/comments/default"
-              "http://angelic-sedition.github.io/atom.xml"
-              "http://ergoemacs.org/emacs/blog.xml"))
-
-      (evilified-state-evilify-map elfeed-search-mode-map
-        :mode elfeed-search-mode
-        :bindings
-        "G" 'elfeed-update
-        "g" 'elfeed-search-update--force)
-
-      (defun elfeed-mark-all-as-read ()
-        (interactive)
-        (mark-whole-buffer)
-        (elfeed-search-untag-all-unread))
-
-      (define-key elfeed-search-mode-map (kbd "R") 'elfeed-mark-all-as-read)
-
-      (defadvice elfeed-show-yank (after elfeed-show-yank-to-kill-ring activate compile)
-        "Insert the yanked text from x-selection to kill ring"
-        (kill-new (x-get-selection)))
-
-      (ad-activate 'elfeed-show-yank))))
-
 (defun scloudyy/init-helm-github-stars ()
   (use-package helm-github-stars
     :defer t
@@ -1125,3 +1078,18 @@ open and unsaved."
           :url "https://www.baidu.com/s?wd=%s")
         search-engine-alist)
   )
+
+(defun scloudyy/init-beacon ()
+  (use-package beacon
+    :init
+    (progn
+      (spacemacs|add-toggle beacon
+        :status beacon-mode
+        :on (beacon-mode)
+        :off (beacon-mode -1)
+        :documentation "Enable point highlighting after scrolling"
+        :evil-leader "otb")
+
+      (spacemacs/toggle-beacon-on))
+    :config (spacemacs|hide-lighter beacon-mode)
+    (setq beacon-color "#183bc8")))

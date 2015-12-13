@@ -86,6 +86,7 @@ values."
                                     leuven-theme
                                     gh-md
                                     evil-lisp-state
+                                    evil-escape
                                     spray
                                     evil-tutor
                                     define-word
@@ -277,7 +278,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil advises quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -310,6 +311,8 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+
+  (setq browse-url-browser-function 'browse-url-firefox)
 
   (setq split-height-threshold nil)
   (setq split-width-threshold 0)
