@@ -67,6 +67,7 @@
 (bind-key* "C-c /" 'company-files)
 
 (global-set-key (kbd "C-<SPC>") 'toggle-input-method)
+(global-set-key (kbd "C-|") 'toggle-input-method) ;some place "C-<SPC>" is not work and "C-\" also have changed
 (global-set-key (kbd "M-f") 'pyim-forward-word)
 (global-set-key (kbd "M-b") 'pyim-backward-word)
 (global-set-key (kbd "C-\\") 'slcoudyy/Nil-Chinese)
