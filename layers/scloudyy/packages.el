@@ -21,7 +21,7 @@
         helm
         ace-window
         org
-        swiper
+        ;; swiper
         youdao-dictionary
         powerline
         yasnippet
