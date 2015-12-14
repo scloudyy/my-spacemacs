@@ -63,7 +63,7 @@ values."
               chinese-enable-fcitx nil)
      prodigy
      ranger
-     spacemacs-layout
+     spacemacs-layouts
      extra-langs
      fasd
      pandoc

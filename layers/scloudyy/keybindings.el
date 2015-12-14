@@ -93,3 +93,6 @@
 (bind-key* "C-s" 'isearch-forward)
 
 (evil-leader/set-key "ol" 'helm-semantic-or-imenu)
+
+(bind-key* (kbd "M-h") 'evil-normal-state)
+(bind-key* (kbd "M-H") 'mark-paragraph)
