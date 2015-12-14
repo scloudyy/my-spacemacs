@@ -506,3 +506,7 @@ With PREFIX, cd to project root."
   (if (equal current-input-method "chinese-pyim")
        (toggle-input-method)
     (message "already En")))
+
+(defun scloudyy/Open-Firefox()
+  (interactive)
+  (shell-command-to-string "open firefox"))

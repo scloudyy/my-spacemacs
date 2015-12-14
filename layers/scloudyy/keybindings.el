@@ -93,6 +93,8 @@
 (bind-key* "C-s" 'isearch-forward)
 
 (evil-leader/set-key "ol" 'helm-semantic-or-imenu)
+(evil-leader/set-key "a." 'helm-browse-url-firefox)
+(evil-leader/set-key "a," 'scloudyy/Open-Firefox)
 
 (bind-key* (kbd "M-h") 'evil-normal-state)
 (bind-key* (kbd "M-H") 'mark-paragraph)
