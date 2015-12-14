@@ -10,6 +10,7 @@
 ;;; License: GPLv3
 
 (require 'dired)
+(require 'org)
 
 (bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
 
@@ -96,5 +97,8 @@
 (evil-leader/set-key "a." 'helm-browse-url-firefox)
 (evil-leader/set-key "a," 'scloudyy/Open-Firefox)
 
-(bind-key* (kbd "M-h") 'evil-normal-state)
-(bind-key* (kbd "M-H") 'mark-paragraph)
+(bind-key* (kbd "M-j") 'evil-normal-state)
+(bind-key* (kbd "M-J") 'indent-new-comment-line)
+(eval-after-load 'org-mode
+  (progn
+    (define-key org-mode-map (kbd "M-J") 'org-metadown)))
