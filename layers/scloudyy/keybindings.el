@@ -94,7 +94,6 @@
 
 (evil-leader/set-key "ol" 'helm-semantic-or-imenu)
 (evil-leader/set-key "a." 'helm-browse-url-firefox)
-(evil-leader/set-key "a," 'scloudyy/Open-Firefox)
 
 (bind-key* (kbd "M-j") 'evil-normal-state)
 (bind-key* (kbd "M-J") 'indent-new-comment-line)
@@ -107,3 +106,4 @@
 (bind-key* (kbd "M-k M-j") 'evil-avy-goto-word-or-subword-1)
 (bind-key* (kbd "M-k h") 'scloudyy/hotspots)
 (bind-key* (kbd "M-k ;") 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
+(bind-key* (kbd "M-k o") 'org-capture)

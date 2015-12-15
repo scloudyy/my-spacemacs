@@ -21,29 +21,20 @@
         helm
         ace-window
         org
-        ;; swiper
         youdao-dictionary
         powerline
         yasnippet
         cc-mode
         ycmd
         whitespace
-        org-octopress
         chinese-pyim
-        ;visual-regexp
-        ;visual-regexp-steroids
         avy
         hydra
         prodigy
         helm-github-stars
-        w3m
         (dired-mode :location built-in)
         helm-ls-git
-        ;org-download
-        ;org-tree-slide
         (occur-mode :location built-in)
- ;       counsel
-        mu4e
         persp-mode
         engine-mode
         beacon
@@ -701,7 +692,7 @@
       (setq org-octopress-directory-top org-blog-dir)
       (setq org-octopress-directory-posts (concat org-blog-dir "source/_posts"))
       (setq org-octopress-directory-org-top org-blog-dir)
-      (setq org-octopress-directory-org-posts (concat org-blog-dir "blog"))
+      (setq org-octopress-directory-org-posts "/home/sclouds/KuaiPan/blog")
       (setq org-octopress-setup-file (concat org-blog-dir "setupfile.org"))
 
       (defun scloudyy/org-save-and-export-blogs ()
