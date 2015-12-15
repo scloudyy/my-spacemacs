@@ -38,7 +38,7 @@ values."
      emacs-lisp
      ycmd
      gtags
-     latex
+     ;; latex
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
