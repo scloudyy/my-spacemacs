@@ -29,7 +29,6 @@
 
 (global-set-key [(shift return)] 'smart-open-line)
 
-(define-key global-map (kbd "<f1>") 'zilongshanren/hotspots)
 (define-key global-map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
 
 (global-set-key (kbd "C-.") 'company-capf)
@@ -99,6 +98,12 @@
 
 (bind-key* (kbd "M-j") 'evil-normal-state)
 (bind-key* (kbd "M-J") 'indent-new-comment-line)
-(eval-after-load 'org-mode
-  (progn
-    (define-key org-mode-map (kbd "M-J") 'org-metadown)))
+(define-key org-mode-map (kbd "M-J") 'org-metadown)
+
+;; my global leader key
+(bind-key* (kbd "M-K") 'kill-sentence)
+(define-key org-mode-map (kbd "M-K") 'org-metaup)
+(bind-key* (kbd "M-k M-k") 'evil-avy-goto-char-2)
+(bind-key* (kbd "M-k M-j") 'evil-avy-goto-word-or-subword-1)
+(bind-key* (kbd "M-k h") 'scloudyy/hotspots)
+(bind-key* (kbd "M-k ;") 'zilongshanren/insert-semicolon-at-the-end-of-this-line)

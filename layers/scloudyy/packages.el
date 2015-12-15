@@ -730,7 +730,7 @@
     (progn
       (require 'ace-pinyin)
       (setq ace-pinyin-use-avy t)
-      (global-set-key (kbd "C-M-;") 'avy-goto-char-2))))
+      (global-set-key (kbd "M-n") 'avy-goto-char-2))))
 
 (defun scloudyy/init-hydra ()
   (use-package hydra

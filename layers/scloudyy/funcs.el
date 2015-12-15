@@ -255,14 +255,14 @@ Position the cursor at its beginning, according to the current mode."
     (sit-for 4)
     (browse-url "http://localhost:4000")))
 
-(defun zilongshanren/hotspots ()
+(defun scloudyy/hotspots ()
   "helm interface to my hotspots, which includes my locations,
 org-files and bookmarks"
   (interactive)
   (helm :buffer "*helm: utities*"
-        :sources `(,(zilongshanren//hotspots-sources))))
+        :sources `(,(scloudyy//hotspots-sources))))
 
-(defun zilongshanren//hotspots-sources ()
+(defun scloudyy//hotspots-sources ()
   "Construct the helm sources for my hotspots"
   `((name . "Mail and News")
    (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
@@ -272,6 +272,8 @@ org-files and bookmarks"
                   ("Calculator" . (lambda () (helm-calcul-expression)))
                   ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
                   ("Agenda" . (lambda () (org-agenda "" "a")))
+                  ("Firefox" . (lambda () (scloudyy/Open-Firefox)))
+                  ("browse-url" . helm-browse-url-firefox)
                   ("sicp" . (lambda() (browse-url "http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html#%_toc_start")))))
    (candidate-number-limit)
    (action . (("Open" . (lambda (x) (funcall x)))))))
@@ -509,4 +511,10 @@ With PREFIX, cd to project root."
 
 (defun scloudyy/Open-Firefox()
   (interactive)
-  (shell-command-to-string "open firefox"))
+  (browse-url "https://www.baidu.com"))
+
+(defun zilongshanren/insert-semicolon-at-the-end-of-this-line ()
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (insert ";")))
