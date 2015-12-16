@@ -341,6 +341,9 @@
          "owh" 'plain-org-wiki-helm
          "owf" 'plain-org-wiki)
        ))
+
+  ;; TODO add global leader key in org mode
+
   )
 
 
