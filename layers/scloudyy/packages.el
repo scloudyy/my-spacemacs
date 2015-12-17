@@ -1200,4 +1200,4 @@ open and unsaved."
 
       (spacemacs/toggle-beacon-on))
     :config (spacemacs|hide-lighter beacon-mode)
-    (setq beacon-color "#f0f0f0")))
+    (setq beacon-color "#00ff00")))
