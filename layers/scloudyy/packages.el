@@ -38,6 +38,7 @@
         persp-mode
         engine-mode
         beacon
+        eshell
         ))
 
 ;;configs for EVIL mode
@@ -1201,3 +1202,8 @@ open and unsaved."
       (spacemacs/toggle-beacon-on))
     :config (spacemacs|hide-lighter beacon-mode)
     (setq beacon-color "#00ff00")))
+
+(defun scloudyy/post-init-eshell()
+  (use-package eshell
+    :init
+    (setq eshell-aliases-file "~/.spacemacs.d/eshell-alias")))

@@ -1,0 +1,1 @@
+alias jj fasd -d -i $1

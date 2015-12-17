@@ -54,8 +54,8 @@ values."
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup nil)
      (shell :variables
-            shell-default-height 60
-            shell-default-shell 'ansi-term
+            shell-default-height 50
+            shell-default-shell 'eshell
             shell-default-term-shell "/bin/zsh")
      (chinese :variables
               chinese-default-input-method 'pinyin
@@ -297,6 +297,7 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+
   (setq exec-path-from-shell-check-startup-files nil)
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
@@ -314,6 +315,7 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
+  (setq ns-pop-up-frames nil)
 
   (setq browse-url-browser-function 'browse-url-firefox)
 
@@ -392,6 +394,7 @@ layers configuration."
 
   (remove-hook 'c-mode-hook 'helm-gtags-mode)
   (remove-hook 'c++-mode-hook 'helm-gtags-mode)
+
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
   (load custom-file 'no-error 'no-message)
  )
