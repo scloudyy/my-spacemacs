@@ -233,36 +233,36 @@
 
 (defun scloudyy/post-init-org()
   ;; define the refile targets
-  (setq org-agenda-files (quote ("/home/sclouds/KuaiPan/org-notes" )))
-  (setq org-default-notes-file "/home/sclouds/KuaiPan/org-notes/gtd.org")
+  (setq org-agenda-files (quote ("~/KuaiPan/org-notes" )))
+  (setq org-default-notes-file "~/KuaiPan/org-notes/gtd.org")
 
   ;; the %i would copy the selected text into the template
   ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
   ;;add multi-file journal
   (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline "/home/sclouds/KuaiPan/org-notes/gtd.org" "Workspace")
+        '(("t" "Todo" entry (file+headline "~/KuaiPan/org-notes/gtd.org" "Workspace")
            "* TODO %?\n  %i\n"
            :empty-lines 1)
-          ("n" "notes" entry (file+headline "/home/sclouds/KuaiPan/org-notes/notes.org" "Quick notes")
+          ("n" "notes" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
            "* TODO [#C] %?\n  %i\n %U"
            :empty-lines 1)
-          ("b" "Blog Ideas" entry (file+headline "/home/sclouds/KuaiPan/org-notes/notes.org" "Blog Ideas")
+          ("b" "Blog Ideas" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Blog Ideas")
            "* TODO %?\n  %i\n %U"
            :empty-lines 1)
-          ("w" "work" entry (file+headline "/home/sclouds/KuaiPan/org-notes/gtd.org" "Cocos2D-X")
+          ("w" "work" entry (file+headline "~/KuaiPan/org-notes/gtd.org" "Cocos2D-X")
            "* TODO %?\n  %i\n %U"
            :empty-lines 1)
-          ("c" "Chrome" entry (file+headline "/home/sclouds/KuaiPan/org-notes/notes.org" "Quick notes")
+          ("c" "Chrome" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
            "* TODO %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
            :empty-lines 1)
-          ("l" "links" entry (file+headline "/home/sclouds/KuaiPan/org-notes/notes.org" "Quick notes")
+          ("l" "links" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
            "* TODO %?\n  %i\n %a \n %U"
            :empty-lines 1)
           ("j" "Journal Entry"
-           entry (file+datetree "/home/sclouds/KuaiPan/org-notes/journal.org")
+           entry (file+datetree "~/KuaiPan/org-notes/journal.org")
            "* %?"
            :empty-lines 0)
-          ("i" "idea" entry (file+headline "/home/sclouds/KuaiPan/org-notes/idea.org" "Idea")
+          ("i" "idea" entry (file+headline "~/KuaiPan/org-notes/idea.org" "Idea")
            "* %?\n %U"
            :empty-lines 0)
           ))

@@ -60,7 +60,7 @@ values."
      (chinese :variables
               chinese-default-input-method 'pinyin
               chinese-enable-youdao-dict t
-              chinese-enable-fcitx nil)
+              chinese-enable-fcitx t)
      prodigy
      ranger
      spacemacs-layouts

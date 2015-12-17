@@ -28,7 +28,7 @@
  '(helm-ls-git-show-abs-or-relative (quote absolute))
  '(lua-documentation-url "http://www.lua.org/manual/5.3/manual.html")
  '(magit-use-overlays nil)
- '(org-agenda-custom-commands nil)
+ '(org-agenda-custom-commands nil t)
  '(org-agenda-ndays 1)
  '(org-agenda-show-all-dates t)
  '(org-agenda-skip-deadline-if-done t)
@@ -46,7 +46,7 @@
  '(paradox-github-token t)
  '(pyim-dicts
    (quote
-    ((:name "scloudyy" :file "/root/.emacs.d/.cache/pyim-bigdict.pyim" :coding utf-8-unix :dict-type pinyin-dict))))
+    ((:name "pyim" :file "/home/sclouds/.emacs.d/.cache/pyim-bigdict.pyim" :coding utf-8-unix :dict-type pinyin-dict))))
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values
    (quote
