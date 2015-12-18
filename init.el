@@ -71,6 +71,7 @@ values."
      ;      mu4e-installation-path "/usr/share/emacs/site-lisp")
      (elfeed :variables
              rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed.org"))
+     deft
      scloudyy
      )
    ;; List of additional packages that will be installed without being

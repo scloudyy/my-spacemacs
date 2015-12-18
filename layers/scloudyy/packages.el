@@ -39,6 +39,7 @@
         engine-mode
         beacon
         eshell
+        deft
         ))
 
 ;;configs for EVIL mode
@@ -1207,3 +1208,8 @@ open and unsaved."
   (use-package eshell
     :init
     (setq eshell-aliases-file "~/.spacemacs.d/eshell-alias")))
+
+(defun scloudyy/post-init-deft()
+  (setq deft-directory "~/KuaiPan/notes")
+  (setq deft-auto-save-interval nil)
+  (setq deft-recursive t))
