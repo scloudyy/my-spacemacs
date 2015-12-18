@@ -1211,5 +1211,5 @@ open and unsaved."
 
 (defun scloudyy/post-init-deft()
   (setq deft-directory "~/KuaiPan/notes")
-  (setq deft-auto-save-interval nil)
+  (setq deft-auto-save-interval 0)
   (setq deft-recursive t))
