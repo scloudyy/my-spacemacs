@@ -1,3 +1,14 @@
+;;; keybindings.el --- scloudyy Layer packages File for Spacemacs
+;;
+;; Copyright (c) 2015-2016 scloudyy
+;;
+;; Author: scloudyy <onecloud.shen@gmail.com>
+;; URL: https://github.com/scloudyy/my-spacemacs.git
+;;
+;; This file is not part of GNU Emacs.
+;;
+;;; License: GPLv3
+
 (setq-default fill-column 110)
 (setq-default tab-width 4)
 

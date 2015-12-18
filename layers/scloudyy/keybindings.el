@@ -1,16 +1,15 @@
-;;; keybindings.el --- zilongshanren Layer packages File for Spacemacs
+;;; keybindings.el --- scloudyy Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren
+;; Copyright (c) 2015-2016 scloudyy
 ;;
-;; Author: zilongshanren <guanghui8827@gmail.com>
-;; URL: https://github.com/zilongshanren/spacemacs-private
+;; Author: scloudyy <onecloud.shen@gmail.com>
+;; URL: https://github.com/scloudyy/my-spacemacs.git
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
 
 (require 'dired)
-
 (bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
 
 (global-set-key (kbd "s-/") 'hippie-expand)
@@ -89,7 +88,6 @@
 (global-set-key (kbd "C-;") 'helm-swoop)
 (bind-key* "C-s" 'isearch-forward)
 
-(evil-leader/set-key "ol" 'helm-semantic-or-imenu)
 (evil-leader/set-key "a." 'helm-browse-url-firefox)
 
 (bind-key* (kbd "M-j") 'evil-normal-state)

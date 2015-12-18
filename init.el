@@ -80,7 +80,9 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(magit-gh-pulls
+   dotspacemacs-excluded-packages '(
+                                    auto-complete
+                                    magit-gh-pulls
                                     magit-gitflow
                                     ;;remove from spacemacs distribution
                                     neotree
@@ -201,7 +203,7 @@ values."
    ;; If non nil `Y' is remapped to `y$'. (default t)
    dotspacemacs-remap-Y-to-y$ t
    ;; Name of the default layout (default "Default")
-   dotspacemacs-default-layout-name "Scloudyy"
+   dotspacemacs-default-layout-name "@Scloudyy"
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
    dotspacemacs-display-default-layout t
@@ -361,6 +363,7 @@ layers configuration."
   ;;       (gdb-set-window-buffer (gdb-get-buffer-create 'gdb-inferior-io) nil win3))
   ;;     (select-window win0)
   ;;     ))
+
   (setq fci-rule-column 80)
   (setq fci-rule-color "orange")
   (setq fci-rule-width 2)

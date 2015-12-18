@@ -1,9 +1,9 @@
-;;; packages.el --- zilongshanren Layer packages File for Spacemacs
+;; packages.el --- scloudyy Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren
+;; Copyright (c) 2015-2016 scloudyy
 ;;
-;; Author: scloud <onecloud.shen@gmail.com>
-;; URL: https://github.com/cosmicwalker/my-spacemacs.git
+;; Author: scloudyy <onecloud.shen@gmail.com>
+;; URL: https://github.com/scloudyy/my-spacemacs.git
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -233,119 +233,131 @@
     :init
     (global-set-key (kbd "C-x C-o") #'ace-window)))
 
+
+
 (defun scloudyy/post-init-org()
-  ;; define the refile targets
-  (setq org-agenda-files (quote ("~/KuaiPan/org-notes" )))
-  (setq org-default-notes-file "~/KuaiPan/org-notes/gtd.org")
+  (use-package org
+    :defer t
+    :init
+    ;; define the refile targets
+    (setq org-agenda-files (quote ("~/KuaiPan/org-notes" )))
+    (setq org-default-notes-file "~/KuaiPan/org-notes/gtd.org")
 
-  ;; the %i would copy the selected text into the template
-  ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
-  ;;add multi-file journal
-  (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline "~/KuaiPan/org-notes/gtd.org" "Workspace")
-           "* TODO %?\n  %i\n"
-           :empty-lines 1)
-          ("n" "notes" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
-           "* TODO [#C] %?\n  %i\n %U"
-           :empty-lines 1)
-          ("b" "Blog Ideas" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Blog Ideas")
-           "* TODO %?\n  %i\n %U"
-           :empty-lines 1)
-          ("w" "work" entry (file+headline "~/KuaiPan/org-notes/gtd.org" "Cocos2D-X")
-           "* TODO %?\n  %i\n %U"
-           :empty-lines 1)
-          ("c" "Chrome" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
-           "* TODO %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
-           :empty-lines 1)
-          ("l" "links" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
-           "* TODO %?\n  %i\n %a \n %U"
-           :empty-lines 1)
-          ("j" "Journal Entry"
-           entry (file+datetree "~/KuaiPan/org-notes/journal.org")
-           "* %?"
-           :empty-lines 0)
-          ("i" "idea" entry (file+headline "~/KuaiPan/org-notes/idea.org" "Idea")
-           "* %?\n %U"
-           :empty-lines 0)
-          ))
+    ;; the %i would copy the selected text into the template
+    ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
+    ;;add multi-file journal
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/KuaiPan/org-notes/gtd.org" "Workspace")
+             "* TODO %?\n  %i\n"
+             :empty-lines 1)
+            ("n" "notes" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
+             "* TODO [#C] %?\n  %i\n %U"
+             :empty-lines 1)
+            ("b" "Blog Ideas" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Blog Ideas")
+             "* TODO %?\n  %i\n %U"
+             :empty-lines 1)
+            ("w" "work" entry (file+headline "~/KuaiPan/org-notes/gtd.org" "Cocos2D-X")
+             "* TODO %?\n  %i\n %U"
+             :empty-lines 1)
+            ("c" "Chrome" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
+             "* TODO %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
+             :empty-lines 1)
+            ("l" "links" entry (file+headline "~/KuaiPan/org-notes/notes.org" "Quick notes")
+             "* TODO %?\n  %i\n %a \n %U"
+             :empty-lines 1)
+            ("j" "Journal Entry"
+             entry (file+datetree "~/KuaiPan/org-notes/journal.org")
+             "* %?"
+             :empty-lines 0)
+            ("i" "idea" entry (file+headline "~/KuaiPan/org-notes/idea.org" "Idea")
+             "* %?\n %U"
+             :empty-lines 0)
+            ))
 
-  ;;An entry without a cookie is treated just like priority ' B '.
-  ;;So when create new task, they are default 重要且紧急
-  (setq org-agenda-custom-commands
-        '(
-          ("w" . "任务安排")
-          ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
-          ("wb" "重要且不紧急的任务" tags-todo "-Weekly-Monthly-Daily+PRIORITY=\"B\"")
-          ("wc" "不重要且紧急的任务" tags-todo "+PRIORITY=\"C\"")
-          ("b" "Blog" tags-todo "BLOG")
-          ("p" . "项目安排")
-          ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"Lab\"")
-          ("W" "Weekly Review"
-           ((stuck "")            ;; review stuck projects as designated by org-stuck-projects
-            (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
-            ))))
+    ;;An entry without a cookie is treated just like priority ' B '.
+    ;;So when create new task, they are default 重要且紧急
+    (setq org-agenda-custom-commands
+          '(
+            ("w" . "任务安排")
+            ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
+            ("wb" "重要且不紧急的任务" tags-todo "-Weekly-Monthly-Daily+PRIORITY=\"B\"")
+            ("wc" "不重要且紧急的任务" tags-todo "+PRIORITY=\"C\"")
+            ("b" "Blog" tags-todo "BLOG")
+            ("p" . "项目安排")
+            ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"Lab\"")
+            ("W" "Weekly Review"
+             ((stuck "")            ;; review stuck projects as designated by org-stuck-projects
+              (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
+              ))))
 
     (defun org-summary-todo (n-done n-not-done)
-    "Switch entry to DONE when all subentries are done, to TODO otherwise."
-    (let (org-log-done org-log-states)  ; turn off logging
-      (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+      "Switch entry to DONE when all subentries are done, to TODO otherwise."
+      (let (org-log-done org-log-states)  ; turn off logging
+        (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
-  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-  ;; used by org-clock-sum-today-by-tags
-  (defun filter-by-tags ()
-    (let ((head-tags (org-get-tags-at)))
-      (member current-tag head-tags)))
+    (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+    ;; used by org-clock-sum-today-by-tags
+    (defun filter-by-tags ()
+      (let ((head-tags (org-get-tags-at)))
+        (member current-tag head-tags)))
 
-  (defun org-clock-sum-today-by-tags (timerange &optional tstart tend noinsert)
-    (interactive "P")
-    (let* ((timerange-numeric-value (prefix-numeric-value timerange))
-           (files (org-add-archive-files (org-agenda-files)))
-           (include-tags '("WORK" "EMACS" "DREAM" "WRITING" "MEETING"
-                           "LIFE" "PROJECT" "OTHER"))
-           (tags-time-alist (mapcar (lambda (tag) `(,tag . 0)) include-tags))
-           (output-string "")
-           (tstart (or tstart
-                       (and timerange (equal timerange-numeric-value 4) (- (org-time-today) 86400))
-                       (and timerange (equal timerange-numeric-value 16) (org-read-date nil nil nil "Start Date/Time:"))
-                       (org-time-today)))
-           (tend (or tend
-                     (and timerange (equal timerange-numeric-value 16) (org-read-date nil nil nil "End Date/Time:"))
-                     (+ tstart 86400)))
-           h m file item prompt donesomething)
-      (while (setq file (pop files))
-        (setq org-agenda-buffer (if (file-exists-p file)
-                                    (org-get-agenda-file-buffer file)
-                                  (error "No such file %s" file)))
-        (with-current-buffer org-agenda-buffer
-          (dolist (current-tag include-tags)
-            (org-clock-sum tstart tend 'filter-by-tags)
-            (setcdr (assoc current-tag tags-time-alist)
-                    (+ org-clock-file-total-minutes (cdr (assoc current-tag tags-time-alist)))))))
-      (while (setq item (pop tags-time-alist))
-        (unless (equal (cdr item) 0)
-          (setq donesomething t)
-          (setq h (/ (cdr item) 60)
-                m (- (cdr item) (* 60 h)))
-          (setq output-string (concat output-string (format "[-%s-] %.2d:%.2d\n" (car item) h m)))))
-      (unless donesomething
-        (setq output-string (concat output-string "[-Nothing-] Done nothing!!!\n")))
-      (unless noinsert
-        (insert output-string))
-      output-string))
+    (defun org-clock-sum-today-by-tags (timerange &optional tstart tend noinsert)
+      (interactive "P")
+      (let* ((timerange-numeric-value (prefix-numeric-value timerange))
+             (files (org-add-archive-files (org-agenda-files)))
+             (include-tags '("WORK" "EMACS" "DREAM" "WRITING" "MEETING"
+                             "LIFE" "PROJECT" "OTHER"))
+             (tags-time-alist (mapcar (lambda (tag) `(,tag . 0)) include-tags))
+             (output-string "")
+             (tstart (or tstart
+                         (and timerange (equal timerange-numeric-value 4) (- (org-time-today) 86400))
+                         (and timerange (equal timerange-numeric-value 16) (org-read-date nil nil nil "Start Date/Time:"))
+                         (org-time-today)))
+             (tend (or tend
+                       (and timerange (equal timerange-numeric-value 16) (org-read-date nil nil nil "End Date/Time:"))
+                       (+ tstart 86400)))
+             h m file item prompt donesomething)
+        (while (setq file (pop files))
+          (setq org-agenda-buffer (if (file-exists-p file)
+                                      (org-get-agenda-file-buffer file)
+                                    (error "No such file %s" file)))
+          (with-current-buffer org-agenda-buffer
+            (dolist (current-tag include-tags)
+              (org-clock-sum tstart tend 'filter-by-tags)
+              (setcdr (assoc current-tag tags-time-alist)
+                      (+ org-clock-file-total-minutes (cdr (assoc current-tag tags-time-alist)))))))
+        (while (setq item (pop tags-time-alist))
+          (unless (equal (cdr item) 0)
+            (setq donesomething t)
+            (setq h (/ (cdr item) 60)
+                  m (- (cdr item) (* 60 h)))
+            (setq output-string (concat output-string (format "[-%s-] %.2d:%.2d\n" (car item) h m)))))
+        (unless donesomething
+          (setq output-string (concat output-string "[-Nothing-] Done nothing!!!\n")))
+        (unless noinsert
+          (insert output-string))
+        output-string))
 
-  (eval-after-load 'org
-    '(progn
-       (global-set-key (kbd "C-c a") 'org-agenda)
-       (define-key org-mode-map (kbd "s-p") 'org-priority)
-       (global-set-key (kbd "C-c b") 'org-iswitchb)
-       (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
-       (evil-leader/set-key-for-mode 'org-mode
-         "owh" 'plain-org-wiki-helm
-         "owf" 'plain-org-wiki)
-       ))
+    (eval-after-load 'org
+      '(progn
+         (global-set-key (kbd "C-c a") 'org-agenda)
+         (define-key org-mode-map (kbd "s-p") 'org-priority)
+         (global-set-key (kbd "C-c b") 'org-iswitchb)
+         (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
+         (evil-leader/set-key-for-mode 'org-mode
+           "owh" 'plain-org-wiki-helm
+           "owf" 'plain-org-wiki)
+         ))
 
-  ;; TODO add global leader key in org mode
-
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-J") 'org-metadown)
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-j") 'evil-normal-state)
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-K") 'org-metaup)
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-k") nil)
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-k o") 'org-capture)
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-k h") 'scloudyy/hotspots)
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-k M-k") 'evil-avy-goto-char-2)
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-k M-j") 'evil-avy-goto-word-or-subword-1)
+    )
   )
 
 

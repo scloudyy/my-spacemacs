@@ -1,9 +1,9 @@
-;;; funcs.el --- zilongshanren Layer packages File for Spacemacs
+;;; funcs.el --- scloudyy Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren 
+;; Copyright (c) 2015-2016 scloudyy
 ;;
-;; Author: zilongshanren <guanghui8827@gmail.com>
-;; URL: https://github.com/zilongshanren/spacemacs-private
+;; Author: scloudyy <onecloud.shen@gmail.com>
+;; URL: https://github.com/scloudyy/my-spacemacs.git
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
