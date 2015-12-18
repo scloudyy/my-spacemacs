@@ -851,8 +851,7 @@
     :init
     (progn
       (require 'ace-pinyin)
-      (setq ace-pinyin-use-avy t)
-      (global-set-key (kbd "M-n") 'avy-goto-char-2))))
+      (setq ace-pinyin-use-avy t))))
 
 (defun scloudyy/init-hydra ()
   (use-package hydra

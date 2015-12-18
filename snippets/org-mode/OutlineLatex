@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Outline Latex
+# key: ol
+# --
+\[$1\]$0
