@@ -269,6 +269,7 @@ org-files and bookmarks"
                   ("RSS" . elfeed)
                   ("Blog" . org-octopress)
                   ("Github" . (lambda() (helm-github-stars)))
+                  ("Fetch-Github" .(lambda() (helm-github-stars-fetch))) ;; need to run helm-github-stars first
                   ("Calculator" . (lambda () (helm-calcul-expression)))
                   ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
                   ("Agenda" . (lambda () (org-agenda "" "a")))
