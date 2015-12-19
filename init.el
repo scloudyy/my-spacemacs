@@ -56,7 +56,8 @@ values."
      (shell :variables
             shell-default-height 50
             shell-default-shell 'eshell
-            shell-default-term-shell "/bin/zsh")
+            shell-default-term-shell "/bin/zsh"
+            shell-enable-smart-eshell t)
      (chinese :variables
               chinese-default-input-method 'pinyin
               chinese-enable-youdao-dict t

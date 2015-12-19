@@ -504,7 +504,7 @@ With PREFIX, cd to project root."
   (shell-command-to-string "cp ~/.tmux.conf ~/Github/my-config/tmux")
   (shell-command-to-string "cp ~/.keysnail.js ~/Github/my-config/keysnail")
   (shell-command-to-string "cp ~/_vimrc ~/Github/my-config/vim")
-  (message "Done")
+  (message "Done!")
   )
 
 
