@@ -500,7 +500,12 @@ With PREFIX, cd to project root."
 
 (defun scloudyy/Sync-Config()
   (interactive)
-  (shell-command-to-string "cp ~/.zshrc ~/Github/my-config/zsh/"))
+  (shell-command-to-string "cp ~/.zshrc ~/Github/my-config/zsh/")
+  (shell-command-to-string "cp ~/.tmux.conf ~/Github/my-config/tmux")
+  (shell-command-to-string "cp ~/.keysnail.js ~/Github/my-config/keysnail")
+  (shell-command-to-string "cp ~/_vimrc ~/Github/my-config/vim")
+  (message "Done")
+  )
 
 
 (defun slcoudyy/Change-To-En-Input-Method()
@@ -511,6 +516,15 @@ With PREFIX, cd to project root."
         (message "Change to En")
         )
     (message "already En")))
+
+(defun slcoudyy/Change-To-Ch-Input-Method()
+  (interactive)
+  (if (equal current-input-method nil)
+      (progn
+        (toggle-input-method)
+        (message "Change to Ch")
+        )
+    (message "already Ch")))
 
 (defun scloudyy/Open-Firefox()
   (interactive)
