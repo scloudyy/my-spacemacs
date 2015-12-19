@@ -500,7 +500,11 @@ With PREFIX, cd to project root."
 
 (defun scloudyy/Sync-Config()
   (interactive)
-  (shell-command-to-string "cp ~/.zshrc ~/Github/my-config/zsh/"))
+  (shell-command-to-string "cp ~/.zshrc ~/Github/my-config/zsh/")
+  (shell-command-to-string "cp ~/.tmux.conf ~/Github/my-config/tmux")
+  (shell-command-to-string "cp ~/.keysnail.js ~/Github/my-config/keysnail")
+  (shell-command-to-string "cp ~/_vimrc ~/Github/my-config/vim")
+  )
 
 
 (defun slcoudyy/Change-To-En-Input-Method()
