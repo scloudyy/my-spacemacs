@@ -350,14 +350,9 @@
          ))
 
     (evil-define-key 'normal evil-org-mode-map (kbd "M-J") 'org-metadown)
-    (evil-define-key 'normal evil-org-mode-map (kbd "M-j") 'evil-normal-state)
+    (evil-define-key 'normal evil-org-mode-map (kbd "M-j") nil)
     (evil-define-key 'normal evil-org-mode-map (kbd "M-K") 'org-metaup)
     (evil-define-key 'normal evil-org-mode-map (kbd "M-k") nil)
-    (evil-define-key 'normal evil-org-mode-map (kbd "M-k o") 'org-capture)
-    (evil-define-key 'normal evil-org-mode-map (kbd "M-k h") 'scloudyy/hotspots)
-    (evil-define-key 'normal evil-org-mode-map (kbd "M-k M-k") 'evil-avy-goto-char-2)
-    (evil-define-key 'normal evil-org-mode-map (kbd "M-k M-j") 'evil-avy-goto-word-or-subword-1)
-    (evil-define-key 'normal evil-org-mode-map (kbd "M-k e") 'slcoudyy/Change-To-En-Input-Method)
     )
   )
 

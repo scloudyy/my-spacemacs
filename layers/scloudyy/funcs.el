@@ -512,6 +512,15 @@ With PREFIX, cd to project root."
         )
     (message "already En")))
 
+(defun slcoudyy/Change-To-Ch-Input-Method()
+  (interactive)
+  (if (equal current-input-method nil)
+      (progn
+        (toggle-input-method)
+        (message "Change to Ch")
+        )
+    (message "already Ch")))
+
 (defun scloudyy/Open-Firefox()
   (interactive)
   (browse-url "https://www.baidu.com"))

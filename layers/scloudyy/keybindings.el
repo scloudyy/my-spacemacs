@@ -99,3 +99,4 @@
 (bind-key* (kbd "M-k o") 'org-capture)
 (bind-key* (kbd "M-K") 'kill-sentence)
 (bind-key* (kbd "M-k e") 'slcoudyy/Change-To-En-Input-Method)
+(bind-key* (kbd "M-k c") 'slcoudyy/Change-To-Ch-Input-Method)
