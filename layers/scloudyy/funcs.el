@@ -488,14 +488,14 @@ With PREFIX, cd to project root."
 
 (defun scloudyy/KuaiPan-Sync-All()
   (interactive)
-  (shell-command-to-string "tar -czf /root/.emacs.d/.cache/emacs-dict.tar.gz /root/.emacs.d/.cache/pyim-bigdict.pyim /root/.emacs.d/.cache/pyim-personal.txt")
-  (shell-command-to-string "cp /root/.emacs.d/.cache/emacs-dict.tar.gz /home/sclouds/KuaiPan")
+  (shell-command-to-string "tar -czf ~/.emacs.d/.cache/emacs-dict.tar.gz ~/.emacs.d/.cache/pyim-bigdict.pyim ~/.emacs.d/.cache/pyim-personal.txt")
+  (shell-command-to-string "cp ~/.emacs.d/.cache/emacs-dict.tar.gz ~/KuaiPan")
   (message "Done!"))
 
 (defun scloudyy/KuaiPan-Sync-Dict()
   (interactive)
-  (shell-command-to-string "tar -czf /root/.emacs.d/.cache/emacs-dict.tar.gz /root/.emacs.d/.cache/pyim-bigdict.pyim /root/.emacs.d/.cache/pyim-personal.txt")
-  (shell-command-to-string "mv /root/.emacs.d/.cache/emacs-dict.tar.gz /home/sclouds/KuaiPan")
+  (shell-command-to-string "tar -czf ~/.emacs.d/.cache/emacs-dict.tar.gz ~/.emacs.d/.cache/pyim-bigdict.pyim ~/.emacs.d/.cache/pyim-personal.txt")
+  (shell-command-to-string "mv ~/.emacs.d/.cache/emacs-dict.tar.gz ~/KuaiPan")
   (message "Done!"))
 
 (defun scloudyy/Sync-Config()
@@ -503,10 +503,13 @@ With PREFIX, cd to project root."
   (shell-command-to-string "cp ~/.zshrc ~/Github/my-config/zsh/"))
 
 
-(defun slcoudyy/Nil-Chinese()
+(defun slcoudyy/Change-To-En-Input-Method()
   (interactive)
   (if (equal current-input-method "chinese-pyim")
-       (toggle-input-method)
+      (progn
+        (toggle-input-method)
+        (message "Change to En")
+        )
     (message "already En")))
 
 (defun scloudyy/Open-Firefox()

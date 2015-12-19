@@ -1,4 +1,19 @@
-* Scloud 的 Emacs 配置
-本配置初始参考 zilongshanren
-
+* Scloudyy 的 Emacs 配置
 Hacking 始于 2015 年。
+
+本配置初始参考 @zilongshanren
+
+* 使用方法
+#+BEGIN_SRC sh
+  #clone spacemacs repo and use develop branch
+  git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d
+  cd .emacs.d
+  git checkout --track origin/develop
+
+  #clone scloudyy layer and checkout develop branch
+  git clone https://github.com/scloudyy/my-spacemacs.git ~/.spacemacs.d
+  cd .spacemacs.d
+  git checkout --track origin/develop
+#+END_SRC
+
+现在可以打开 Emacs 24.5+ 开始使用我的配置了。

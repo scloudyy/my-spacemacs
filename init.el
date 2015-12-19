@@ -271,7 +271,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -368,8 +368,6 @@ layers configuration."
   (setq fci-rule-color "orange")
   (setq fci-rule-width 2)
 
-  (add-hook 'prog-mode-hook #'linum-mode)
-  ;(add-hook 'prog-mode-hook #'fci-mode)
 
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
@@ -380,18 +378,6 @@ layers configuration."
 
   ;;currently this key map must be put in user-config to override the defaults
   (evil-leader/set-key "pf" 'helm-ls-git-ls)
-
-  ;; (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
-
-  (when (configuration-layer/layer-usedp 'vinegar)
-    (evilify dired-mode dired-mode-map
-             (kbd "C-k") 'zilongshanren/dired-up-directory
-             (kbd "C") 'dired-do-copy))
-
-  (setq company-backends-web-mode '((company-dabbrev-code
-                                     company-keywords
-                                     company-etags)
-                                    company-files company-dabbrev))
 
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
