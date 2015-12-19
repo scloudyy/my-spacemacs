@@ -503,10 +503,13 @@ With PREFIX, cd to project root."
   (shell-command-to-string "cp ~/.zshrc ~/Github/my-config/zsh/"))
 
 
-(defun slcoudyy/Nil-Chinese()
+(defun slcoudyy/Change-To-En-Input-Method()
   (interactive)
   (if (equal current-input-method "chinese-pyim")
-       (toggle-input-method)
+      (progn
+        (toggle-input-method)
+        (message "Change to En")
+        )
     (message "already En")))
 
 (defun scloudyy/Open-Firefox()

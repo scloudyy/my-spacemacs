@@ -64,10 +64,8 @@
 (bind-key* "s-j"  'scroll-other-window)
 (bind-key* "C-c /" 'company-files)
 
-(global-set-key (kbd "C-|") 'toggle-input-method) ;some place "C-<SPC>" is not work and "C-\" also have changed
 (global-set-key (kbd "M-f") 'pyim-forward-word)
 (global-set-key (kbd "M-b") 'pyim-backward-word)
-(global-set-key (kbd "C-|") 'slcoudyy/Nil-Chinese)
 
 (global-set-key (kbd "C-x x") 'helm-M-x)
 (global-set-key (kbd "C-x j") 'fasd-find-file)
@@ -100,3 +98,4 @@
 (bind-key* (kbd "M-k ;") 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
 (bind-key* (kbd "M-k o") 'org-capture)
 (bind-key* (kbd "M-K") 'kill-sentence)
+(bind-key* (kbd "M-k e") 'slcoudyy/Change-To-En-Input-Method)
