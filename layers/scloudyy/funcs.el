@@ -535,3 +535,7 @@ With PREFIX, cd to project root."
   (save-excursion
     (end-of-line)
     (insert ";")))
+
+(defun scloudyy/latex-online()
+  (interactive)
+  (browse-url "http://latex.codecogs.com/eqneditor/editor.php"))
