@@ -13,7 +13,7 @@
  '(beacon-blink-delay 0.3)
  '(cfs--current-profile-name "profile1" t)
  '(ctags-update-delay-seconds 1024)
- '(erc-nick "zilongshanren")
+ '(erc-nick "scloudyy")
  '(erc-port 6666)
  '(expand-region-contract-fast-key "V")
  '(expand-region-exclude-text-mode-expansions (quote (html-mode nxml-mode web-mode)))
