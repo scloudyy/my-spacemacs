@@ -318,6 +318,7 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (setq org-image-actual-width 10) ;; 可以設定成一個數字
 
   (setq ns-pop-up-frames nil)
 

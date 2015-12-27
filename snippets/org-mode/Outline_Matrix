@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Outline Latex Matrix
+# key: olm
+# --
+\[\left\{\begin{matrix}
+$1
+\end{matrix}\right\]$0

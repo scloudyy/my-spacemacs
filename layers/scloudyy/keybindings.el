@@ -67,9 +67,6 @@
 (global-set-key (kbd "M-f") 'pyim-forward-word)
 (global-set-key (kbd "M-b") 'pyim-backward-word)
 
-(global-set-key (kbd "C-x x") 'helm-M-x)
-(global-set-key (kbd "C-x j") 'fasd-find-file)
-
 (eval-after-load 'dired-mode
      (progn
        (define-key dired-mode-map (kbd "C-k") 'zilongshanren/dired-up-directory)))
@@ -100,3 +97,5 @@
 (bind-key* (kbd "M-K") 'kill-sentence)
 (bind-key* (kbd "M-k e") 'slcoudyy/Change-To-En-Input-Method)
 (bind-key* (kbd "M-k c") 'slcoudyy/Change-To-Ch-Input-Method)
+(bind-key* (kbd "M-k M-L") 'helm-M-x)
+(bind-key* (kbd "M-k f") 'fasd-find-file)
