@@ -318,6 +318,7 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+
   (setq org-image-actual-width 10) ;; 可以設定成一個數字
 
   (setq ns-pop-up-frames nil)
@@ -327,13 +328,13 @@ layers configuration."
   (setq split-height-threshold nil)
   (setq split-width-threshold 0)
 
-  (global-visual-line-mode t)
+  (setq turncate-lines t)
 
   (add-hook 'prog-mode-hook
-    (lambda ()
-      (when (> (buffer-size) 10000)
-        (turn-off-show-smartparens-mode)
-        (linum-mode nil))))
+            (lambda ()
+              (when (> (buffer-size) 10000)
+                (turn-off-show-smartparens-mode)
+                (linum-mode nil))))
 
   ;(setq truncate-lines nil)
   ;(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))

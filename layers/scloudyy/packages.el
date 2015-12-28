@@ -379,6 +379,7 @@
                                 ;; keybinding for inserting code blocks
                                 (local-set-key (kbd "C-c i s")
                                                'zilongshanren/org-insert-src-block)
+                                (setq truncate-lines nil)
                                 ))
     )
   )
