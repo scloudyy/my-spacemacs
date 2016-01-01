@@ -319,7 +319,11 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
-  (setq org-image-actual-width 10) ;; 可以設定成一個數字
+  ;; https://www.reddit.com/r/emacs/comments/3yxk2x/flexible_isearch_without_a_package/
+  ;; Isearch convenience, space matches anything (non-greedy)
+  (setq search-whitespace-regexp ".*?")
+
+  (setq org-image-actual-width 700) ;; 可以設定成一個數字
 
   (setq ns-pop-up-frames nil)
 
