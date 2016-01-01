@@ -52,6 +52,8 @@
 (when (spacemacs/system-is-mac)
  (evil-leader/set-key "o!" 'zilongshanren/iterm-shell-command))
 
+(evil-leader/set-key "opf" 'helm-ls-git-ls)
+
 (spacemacs|add-toggle toggle-shadowsocks-proxy-mode
     :status shadowsocks-proxy-mode
     :on (global-shadowsocks-proxy-mode)

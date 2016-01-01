@@ -340,41 +340,9 @@ layers configuration."
                 (turn-off-show-smartparens-mode)
                 (linum-mode nil))))
 
-  ;(setq truncate-lines nil)
-  ;(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
-  ;(add-hook 'prog-mode-hook (lambda () (setq truncate-lines nil)))
-  ;; (defadvice gdb-setup-windows (after my-setup-gdb-windows activate)
-  ;;   "my gdb UI"
-  ;;   (gdb-get-buffer-create 'gdb-stack-buffer)
-  ;;   (set-window-dedicated-p (selected-window) nil)
-  ;;   (switch-to-buffer gud-comint-buffer)
-  ;;   (delete-other-windows)
-  ;;   (let ((win0 (selected-window))
-  ;;         (win1 (split-window nil nil 'left))      ;code and output
-  ;;         (win2 (split-window-below (/ (* (window-height) 2) 3)))     ;stack
-  ;;         )
-  ;;     (select-window win2)
-  ;;     (gdb-set-window-buffer (gdb-stack-buffer-name))
-  ;;     (select-window win1)
-  ;;     (set-window-buffer
-  ;;      win1
-  ;;      (if gud-last-last-frame
-  ;;          (gud-find-file (car gud-last-last-frame))
-  ;;        (if gdb-main-file
-  ;;            (gud-find-file gdb-main-file)
-  ;;          ;; Put buffer list in window if we
-  ;;          ;; can't find a source file.
-  ;;          (list-buffers-noselect))))
-  ;;     (setq gdb-source-window (selected-window))
-  ;;     (let ((win3 (split-window nil (/ (* (window-height) 3) 4)))) ;io
-  ;;       (gdb-set-window-buffer (gdb-get-buffer-create 'gdb-inferior-io) nil win3))
-  ;;     (select-window win0)
-  ;;     ))
-
   (setq fci-rule-column 80)
   (setq fci-rule-color "orange")
   (setq fci-rule-width 2)
-
 
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
@@ -382,9 +350,6 @@ layers configuration."
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
   (global-company-mode t)
-
-  ;;currently this key map must be put in user-config to override the defaults
-  (evil-leader/set-key "pf" 'helm-ls-git-ls)
 
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
