@@ -91,8 +91,8 @@
 (bind-key* (kbd "M-J") 'indent-new-comment-line)
 
 ;; my global leader key
+;; 单M右手，双M左手
 (bind-key* (kbd "M-k M-k") 'evil-avy-goto-char-2)
-(bind-key* (kbd "M-k M-j") 'evil-avy-goto-word-or-subword-1)
 (bind-key* (kbd "M-k h") 'scloudyy/hotspots)
 (bind-key* (kbd "M-k ;") 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
 (bind-key* (kbd "M-k o") 'org-capture)
@@ -101,5 +101,5 @@
 (bind-key* (kbd "M-k c") 'slcoudyy/Change-To-Ch-Input-Method)
 (bind-key* (kbd "M-k M-i") 'helm-M-x)
 (bind-key* (kbd "M-k f") 'fasd-find-file)
-(add-hook 'c++-mode-hook (lambda() (bind-key* (kbd "M-k s") 'company-ycmd-semantic-complete)))
-(add-hook 'c-mode-hook (lambda() (bind-key* (kbd "M-k s") 'company-ycmd-semantic-complete)))
+(bind-key* (kbd "M-k M-s") 'hippie-expand)
+(add-hook 'c++-mode-hook (lambda() (bind-key* (kbd "M-k M-j") 'company-ycmd-semantic-complete)))
