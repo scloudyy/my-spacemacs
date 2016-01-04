@@ -101,3 +101,5 @@
 (bind-key* (kbd "M-k c") 'slcoudyy/Change-To-Ch-Input-Method)
 (bind-key* (kbd "M-k M-i") 'helm-M-x)
 (bind-key* (kbd "M-k f") 'fasd-find-file)
+(add-hook 'c++-mode-hook (lambda() (bind-key* (kbd "M-k s") 'company-ycmd-semantic-complete)))
+(add-hook 'c-mode-hook (lambda() (bind-key* (kbd "M-k s") 'company-ycmd-semantic-complete)))

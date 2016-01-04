@@ -539,3 +539,8 @@ With PREFIX, cd to project root."
 (defun scloudyy/latex-online()
   (interactive)
   (browse-url "http://latex.codecogs.com/eqneditor/editor.php"))
+
+(defun company-ycmd-semantic-complete ()
+  (interactive)
+  (let ((ycmd-force-semantic-completion t))
+    (company-complete)))

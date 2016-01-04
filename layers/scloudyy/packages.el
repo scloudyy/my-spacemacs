@@ -1248,3 +1248,6 @@ open and unsaved."
   (setq deft-directory "~/KuaiPan/notes")
   (setq deft-auto-save-interval 0)
   (setq deft-recursive t))
+
+(defun scloudyy/post-init-chinese-pyim()
+  (setq pyim-enable-words-predict nil))
