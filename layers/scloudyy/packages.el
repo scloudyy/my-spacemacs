@@ -812,6 +812,8 @@
                                           company-files company-dabbrev ))
   (add-hook 'c-mode-hook 'flycheck-mode)
   (add-hook 'c++-mode-hook 'flycheck-mode)
+
+  (add-hook 'c++-mode-hook (lambda() (local-set-key (kbd "M-l") 'company-ycmd-semantic-complete)))
   )
 
 

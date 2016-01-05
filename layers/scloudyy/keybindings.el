@@ -102,4 +102,4 @@
 (bind-key* (kbd "M-k M-i") 'helm-M-x)
 (bind-key* (kbd "M-k f") 'fasd-find-file)
 (bind-key* (kbd "M-k M-s") 'hippie-expand)
-(add-hook 'c++-mode-hook (lambda() (bind-key* (kbd "M-k M-j") 'company-ycmd-semantic-complete)))
+(bind-key* (kbd "M-L") 'downcase-word)
