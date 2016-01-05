@@ -318,6 +318,11 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
+
+  (with-eval-after-load 'helm-swoop
+    (define-key helm-swoop-map (kbd "C-w") 'evil-delete-backward-word))
 
   ;; https://www.reddit.com/r/emacs/comments/3yxk2x/flexible_isearch_without_a_package/
   ;; Isearch convenience, space matches anything (non-greedy)
