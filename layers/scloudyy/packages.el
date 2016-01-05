@@ -813,7 +813,10 @@
   (add-hook 'c-mode-hook 'flycheck-mode)
   (add-hook 'c++-mode-hook 'flycheck-mode)
 
-  (add-hook 'c++-mode-hook (lambda() (local-set-key (kbd "M-l") 'company-ycmd-semantic-complete)))
+  (add-hook 'c++-mode-hook (lambda() (progn
+                                       (local-set-key (kbd "M-l") 'company-ycmd-semantic-complete)
+                                       (local-set-key (kbd "M-k p") 'ycmd-parse-buffer)
+                                       (local-set-key (kbd "M-k y") 'ycmd-toggle-force-semantic-completion))))
   )
 
 
@@ -823,7 +826,6 @@
   (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
   (require 'cc-mode)
   (define-key c++-mode-map (kbd "M-[") 'ycmd-goto)
-  (define-key c++-mode-map (kbd "C-M-y") 'ycmd-parse-buffer)
   )
 
 (defun scloudyy/post-init-whitespace ()

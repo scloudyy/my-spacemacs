@@ -542,5 +542,7 @@ With PREFIX, cd to project root."
 
 (defun company-ycmd-semantic-complete ()
   (interactive)
+  (company-abort)
   (let ((ycmd-force-semantic-completion t))
-    (company-complete)))
+    (company-complete))
+  )
