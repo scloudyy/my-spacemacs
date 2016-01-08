@@ -102,4 +102,5 @@
 (bind-key* (kbd "M-k M-i") 'helm-M-x)
 (bind-key* (kbd "M-k f") 'fasd-find-file)
 (bind-key* (kbd "M-k M-s") 'hippie-expand)
+(bind-key* (kbd "M-k s") 'hippie-expand)
 (bind-key* (kbd "M-L") 'downcase-word)

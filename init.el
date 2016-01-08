@@ -318,6 +318,12 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+
+  (set-face-attribute 'region nil :background "#5d5f63" :foreground "#e7f569")
+
+  (add-to-list 'package-archives
+               '("popkit" . "http://elpa.popkit.org/packages/"))
+
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
 

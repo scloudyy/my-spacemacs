@@ -31,7 +31,7 @@
         avy
         hydra
         prodigy
-        helm-github-stars
+        ;; helm-github-stars
         (dired-mode :location built-in)
         helm-ls-git
         (occur-mode :location built-in)
@@ -816,7 +816,7 @@
   (add-hook 'c++-mode-hook (lambda() (progn
                                        (local-set-key (kbd "M-l") 'company-ycmd-semantic-complete)
                                        (local-set-key (kbd "M-k p") 'ycmd-parse-buffer)
-                                       (local-set-key (kbd "M-k y") 'ycmd-toggle-force-semantic-completion))))
+                                       (local-set-key (kbd "M-k l") 'ycmd-toggle-force-semantic-completion))))
   )
 
 
