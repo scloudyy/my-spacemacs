@@ -546,3 +546,17 @@ With PREFIX, cd to project root."
   (let ((ycmd-force-semantic-completion t))
     (company-complete))
   )
+
+(defun helm-git ()
+  "Find file in the current Git repository."
+  (interactive)
+  (setq counsel--git-dir (expand-file-name
+                          (locate-dominating-file
+                           default-directory ".git")))
+  (let* ((default-directory counsel--git-dir)
+         (cands (split-string
+                 (shell-command-to-string
+                  "git ls-files --full-name --")
+                 "\n"
+                 t)))
+    (helm-comp-read "Find file: " cands)))

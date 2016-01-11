@@ -23,6 +23,7 @@ values."
      ;; Uncomment a layer name and press C-c C-c to install it
      ;;  Guide key
      ;; --------------------------------------------------------
+     spacemacs-helm
      better-defaults
      github
      semantic                           ; too slow
@@ -73,6 +74,7 @@ values."
      (elfeed :variables
              rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed.org"))
      deft
+     (clojure :variables clojure-enable-fancify-symbols t)
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -153,7 +155,7 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects bookmark)
+   dotspacemacs-startup-lists '(recents projects bookmarks)
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
@@ -318,6 +320,8 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+
+  (spacemacs/set-leader-keys "pf" 'helm-git)
 
   (set-face-attribute 'region nil :background "#5d5f63" :foreground "#e7f569")
 

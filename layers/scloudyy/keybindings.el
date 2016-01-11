@@ -85,7 +85,7 @@
 (global-set-key (kbd "C-;") 'helm-swoop)
 (bind-key* "C-s" 'isearch-forward)
 
-(evil-leader/set-key "a." 'helm-browse-url-firefox)
+(spacemacs/set-leader-keys "a." 'helm-browse-url-firefox)
 
 (bind-key* (kbd "M-j") 'evil-normal-state)
 (bind-key* (kbd "M-J") 'indent-new-comment-line)

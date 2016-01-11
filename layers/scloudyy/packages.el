@@ -29,11 +29,10 @@
         whitespace
         chinese-pyim
         avy
-        hydra
+        ;; hydra
         prodigy
-        ;; helm-github-stars
+        helm-github-stars
         (dired-mode :location built-in)
-        helm-ls-git
         (occur-mode :location built-in)
         persp-mode
         engine-mode
@@ -1218,8 +1217,13 @@ open and unsaved."
 (defun scloudyy/post-init-persp-mode ()
   (spacemacs|define-custom-layout "@C++"
     :binding "c"
-    :body
-    ))
+    :body)
+  (spacemacs|define-custom-layout "@python"
+    :binding "p"
+    :body)
+  (spacemacs|define-custom-layout "@clojure"
+    :binding "l"
+    :body))
 
 (defun scloudyy/post-init-engine-mode()
   (push '(baidu
