@@ -534,7 +534,8 @@ With PREFIX, cd to project root."
   (interactive)
   (save-excursion
     (end-of-line)
-    (insert ";")))
+    (insert ";"))
+  (evil-normal-state))
 
 (defun scloudyy/latex-online()
   (interactive)
