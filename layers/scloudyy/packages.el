@@ -226,11 +226,11 @@
               (rgrep . nil)
               (read-directory-name . ido))))))
 
-(defun scloudyy/post-init-ace-window ()
-  (use-package ace-window
-    :defer t
-    :init
-    (global-set-key (kbd "C-x C-o") #'ace-window)))
+;; (defun scloudyy/post-init-ace-window ()
+;;   (use-package ace-window
+;;     :defer t
+;;     :init
+;;     (global-set-key (kbd "C-x C-o") #'ace-window)))
 
 
 

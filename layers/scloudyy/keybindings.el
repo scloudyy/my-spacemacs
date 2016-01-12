@@ -103,4 +103,6 @@
 (bind-key* (kbd "M-k f") 'fasd-find-file)
 (bind-key* (kbd "M-k M-s") 'hippie-expand)
 (bind-key* (kbd "M-k s") 'hippie-expand)
+(bind-key* (kbd "M-k w") 'ace-window)
+(bind-key* (kbd "M-k M-w") 'ace-window)
 (bind-key* (kbd "M-L") 'downcase-word)
