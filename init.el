@@ -321,8 +321,6 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
-  (spacemacs/set-leader-keys "pf" 'helm-git)
-
   (set-face-attribute 'region nil :background "#5d5f63" :foreground "#e7f569")
 
   (add-to-list 'package-archives

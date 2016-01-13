@@ -87,6 +87,9 @@
 
 (spacemacs/set-leader-keys "a." 'helm-browse-url-firefox)
 
+(bind-key* (kbd "C-s") 'save-buffer)
+(bind-key* (kbd "C-f") 'isearch-forward)
+
 (bind-key* (kbd "M-j") 'evil-normal-state)
 (bind-key* (kbd "M-J") 'indent-new-comment-line)
 
