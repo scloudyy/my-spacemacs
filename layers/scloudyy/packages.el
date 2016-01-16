@@ -802,15 +802,18 @@
 
 (defun scloudyy/post-init-cc-mode ()
   ;; company backend should be grouped
-  ;(define-key c++-mode-map (kbd "s-.") 'company-ycmd)
+  (setq c-basic-offset 4)
+
+  (setq-default indent-tabs-mode nil)
+
+  (setq c-default-style "linux")
+
   (setq company-backends-c-mode-common '((company-c-headers
                                           company-dabbrev-code
                                           company-keywords
                                           company-etags
                                           company-gtags :with company-yasnippet)
                                           company-files company-dabbrev ))
-  (add-hook 'c-mode-hook 'flycheck-mode)
-  (add-hook 'c++-mode-hook 'flycheck-mode)
 
   (add-hook 'c++-mode-hook (lambda() (progn
                                        (local-set-key (kbd "M-l") 'company-ycmd-semantic-complete)

@@ -336,7 +336,7 @@ layers configuration."
   ;; Isearch convenience, space matches anything (non-greedy)
   (setq search-whitespace-regexp ".*?")
 
-  (setq org-image-actual-width 700) ;; 可以設定成一個數字
+  (setq org-image-actual-width '(700)) ;; 可以設定成一個數字
 
   (setq ns-pop-up-frames nil)
 
@@ -367,8 +367,8 @@ layers configuration."
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
 
-  (remove-hook 'c-mode-hook 'helm-gtags-mode)
-  (remove-hook 'c++-mode-hook 'helm-gtags-mode)
+  (eval-after-load 'helm-gtags
+    '(spacemacs|hide-lighter helm-gtags-mode))
 
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
   (load custom-file 'no-error 'no-message)
