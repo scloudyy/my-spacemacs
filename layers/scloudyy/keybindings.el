@@ -105,6 +105,7 @@
 (bind-key* (kbd "M-k c") 'slcoudyy/Change-To-Ch-Input-Method)
 (bind-key* (kbd "M-k M-c") 'slcoudyy/Change-To-Ch-Input-Method)
 (bind-key* (kbd "M-k M-i") 'helm-M-x)
+(bind-key* (kbd "M-k i") 'helm-M-x)
 (bind-key* (kbd "M-k f") 'fasd-find-file)
 (bind-key* (kbd "M-k M-s") 'hippie-expand)
 (bind-key* (kbd "M-k s") 'hippie-expand)
