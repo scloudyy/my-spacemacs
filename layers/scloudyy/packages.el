@@ -16,7 +16,7 @@
         evil
         company
         cmake
-        ;flycheck
+        flycheck
         markdown
         helm
         ace-window
@@ -39,6 +39,7 @@
         beacon
         eshell
         deft
+        eldoc
         ))
 
 ;;configs for EVIL mode
@@ -1262,3 +1263,11 @@ open and unsaved."
 
 (defun scloudyy/post-init-chinese-pyim()
   (setq pyim-enable-words-predict nil))
+
+(defun scloudyy/post-init-eldoc()
+  (remove-hook 'python-mode-hook 'eldoc-mode))
+
+(defun scloudyy/post-init-flycheck ()
+  (with-eval-after-load 'flycheck
+    (progn
+      (setq flycheck-display-errors-delay 0.2))))
