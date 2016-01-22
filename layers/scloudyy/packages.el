@@ -40,6 +40,7 @@
         eshell
         deft
         eldoc
+        helm-gtags
         ))
 
 ;;configs for EVIL mode
@@ -1271,3 +1272,7 @@ open and unsaved."
   (with-eval-after-load 'flycheck
     (progn
       (setq flycheck-display-errors-delay 0.2))))
+
+(defun scloudyy/post-init-helm-gtags ()
+  (eval-after-load 'helm-gtags
+    '(spacemacs|hide-lighter helm-gtags-mode)))

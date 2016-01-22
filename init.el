@@ -23,6 +23,7 @@ values."
      ;; Uncomment a layer name and press C-c C-c to install it
      ;;  Guide key
      ;; --------------------------------------------------------
+     (spacemacs-ivy :step pre)
      spacemacs-helm
      better-defaults
      github
@@ -108,6 +109,7 @@ values."
                                     scad-mode
                                     stan-mode
                                     wolfram-mode
+                                    thrift
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -307,7 +309,6 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
-
   (setq exec-path-from-shell-check-startup-files nil)
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
@@ -324,6 +325,10 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (with-eval-after-load 'hybrid-mode
+    (spacemacs|diminish hybrid-mode))
+
+  (spacemacs|diminish which-key-mode)
 
   (set-face-attribute 'region nil :background "#5d5f63" :foreground "#e7f569")
 
@@ -370,9 +375,6 @@ layers configuration."
 
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
-
-  (eval-after-load 'helm-gtags
-    '(spacemacs|hide-lighter helm-gtags-mode))
 
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
   (load custom-file 'no-error 'no-message)

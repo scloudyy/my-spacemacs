@@ -83,23 +83,21 @@
 (global-set-key (kbd "C-M-+") 'spacemacs/zoom-frm-in)
 
 (global-set-key (kbd "C-;") 'helm-swoop)
-(bind-key* "C-s" 'isearch-forward)
 
 (spacemacs/set-leader-keys "a." 'helm-browse-url-firefox)
 
 (bind-key* (kbd "C-s") 'save-buffer)
 (bind-key* (kbd "C-f") 'isearch-forward)
 
-(bind-key* (kbd "M-j") 'evil-normal-state)
 (bind-key* (kbd "M-J") 'indent-new-comment-line)
+(bind-key* (kbd "M-j") 'evil-normal-state)
 
 ;; my global leader key
 ;; 单M右手，双M左手
+(bind-key* (kbd "M-K") 'kill-sentence)
 (bind-key* (kbd "M-k M-k") 'evil-avy-goto-char-2)
 (bind-key* (kbd "M-k h") 'scloudyy/hotspots)
 (bind-key* (kbd "M-k ;") 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
-(bind-key* (kbd "M-k o") 'org-capture)
-(bind-key* (kbd "M-K") 'kill-sentence)
 (bind-key* (kbd "M-k e") 'slcoudyy/Change-To-En-Input-Method)
 (bind-key* (kbd "M-k M-e") 'slcoudyy/Change-To-En-Input-Method)
 (bind-key* (kbd "M-k c") 'slcoudyy/Change-To-Ch-Input-Method)
