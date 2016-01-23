@@ -29,7 +29,6 @@
         whitespace
         chinese-pyim
         avy
-        ;; hydra
         prodigy
         helm-github-stars
         (dired-mode :location built-in)
@@ -39,9 +38,10 @@
         beacon
         eshell
         deft
-        eldoc
         helm-gtags
         elpy
+        smartparens
+        which-key
         ))
 
 ;;configs for EVIL mode
@@ -131,10 +131,8 @@
 (defun scloudyy/post-init-company ()
   (setq company-minimum-prefix-length 1
         company-idle-delay 0.08)
-  (global-set-key (kbd "C-.") 'company-complete)
-  (when (configuration-layer/package-usedp 'company)
-    (spacemacs|add-company-hook lua-mode)
-    (spacemacs|add-company-hook nxml-mode)))
+  (add-hook 'company-mode-hook
+            (lambda() (spacemacs|diminish company-mode))))
 
 (defun scloudyy/post-init-cmake-mode ()
   (use-package cmake-mode
@@ -1266,9 +1264,6 @@ open and unsaved."
 (defun scloudyy/post-init-chinese-pyim()
   (setq pyim-enable-words-predict nil))
 
-(defun scloudyy/post-init-eldoc()
-  (remove-hook 'python-mode-hook 'eldoc-mode))
-
 (defun scloudyy/post-init-flycheck ()
   (with-eval-after-load 'flycheck
     (progn
@@ -1292,5 +1287,12 @@ open and unsaved."
       "hh" 'elpy-doc
       "gg" 'elpy-goto-definition
       "ia" 'elpy-importmagic-add-import
-      "ii" 'elpy-importmagic-fixup))
-  )
+      "ii" 'elpy-importmagic-fixup)))
+
+(defun scloudyy/post-init-smartparens()
+  (add-hook 'smartparens-mode-hook
+            (lambda() (spacemacs|diminish smartparens-mode))))
+
+(defun scloudyy/post-which-key ()
+  (add-hook 'which-key-mode-hook
+            (lambda() (spacemacs|diminish which-key-mode))))

@@ -375,9 +375,6 @@ layers configuration."
 
   (global-company-mode t)
 
-  (spacemacs|defvar-company-backends sh-mode)
-  (spacemacs|add-company-hook sh-mode)
-
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
   (load custom-file 'no-error 'no-message)
  )
