@@ -76,6 +76,7 @@ values."
              rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed.org"))
      deft
      (clojure :variables clojure-enable-fancify-symbols t)
+     unimpaired
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -346,12 +347,6 @@ layers configuration."
   ;; https://www.reddit.com/r/emacs/comments/3yxk2x/flexible_isearch_without_a_package/
   ;; Isearch convenience, space matches anything (non-greedy)
   (setq search-whitespace-regexp ".*?")
-
-  (setq org-image-actual-width '(700)) ;; 可以設定成一個數字
-
-  (setq ns-pop-up-frames nil)
-
-  (setq browse-url-browser-function 'browse-url-firefox)
 
   (setq split-height-threshold nil)
   (setq split-width-threshold 0)

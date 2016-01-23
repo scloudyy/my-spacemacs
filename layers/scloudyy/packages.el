@@ -72,13 +72,6 @@
       (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
       (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-      (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
-      (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
-
-
-      (define-key evil-normal-state-map (kbd "[ b") 'spacemacs/previous-useful-buffer)
-      (define-key evil-normal-state-map (kbd "] b") 'spacemacs/next-useful-buffer)
-
       ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
       ;; (define-key evil-insert-state-map "\C-n" 'next-line)
       ;; (define-key evil-insert-state-map "\C-k" 'kill-line)
@@ -239,6 +232,8 @@
   (use-package org
     :defer t
     :init
+    (setq org-image-actual-width '(700))
+    
     ;; define the refile targets
     (setq org-agenda-files (quote ("~/KuaiPan/org-notes" )))
     (setq org-default-notes-file "~/KuaiPan/org-notes/gtd.org")
