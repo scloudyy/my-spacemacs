@@ -328,6 +328,8 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (setq browse-url-browser-function 'browse-url-firefox)
+
   (with-eval-after-load 'hybrid-mode
     (spacemacs|diminish hybrid-mode))
 
@@ -372,4 +374,8 @@ layers configuration."
 
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
   (load custom-file 'no-error 'no-message)
+
+  ;; 为了方便与windows用户协作
+  (add-hook 'c++-mode-hook
+            (lambda() (setq buffer-file-coding-system 'utf-8-dos)))
  )

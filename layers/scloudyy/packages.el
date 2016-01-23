@@ -42,6 +42,7 @@
         elpy
         smartparens
         which-key
+        evil-org
         ))
 
 ;;configs for EVIL mode
@@ -1291,3 +1292,7 @@ open and unsaved."
 (defun scloudyy/post-which-key ()
   (add-hook 'which-key-mode-hook
             (lambda() (spacemacs|diminish which-key-mode))))
+
+(defun scloudyy/post-init-evil-org()
+  (add-hook 'evil-org-mode-hook
+            (lambda() (spacemacs|diminish evil-org-mode))))
