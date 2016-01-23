@@ -61,7 +61,6 @@
     :documentation "Toggle shadowsocks proxy mode."
     :evil-leader "toP")
 
-(global-set-key (kbd "s-s") 'save-buffer)
 (bind-key* "s-k" 'scroll-other-window-down)
 (bind-key* "s-j"  'scroll-other-window)
 (bind-key* "C-c /" 'company-files)

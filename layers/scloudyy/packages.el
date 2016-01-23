@@ -41,6 +41,7 @@
         deft
         eldoc
         helm-gtags
+        elpy
         ))
 
 ;;configs for EVIL mode
@@ -1276,3 +1277,20 @@ open and unsaved."
 (defun scloudyy/post-init-helm-gtags ()
   (eval-after-load 'helm-gtags
     '(spacemacs|hide-lighter helm-gtags-mode)))
+
+(defun scloudyy/init-elpy()
+  (use-package elpy
+    :init
+    (spacemacs|add-company-hook python-mode)
+    (push 'elpy-company-backend company-backends-python-mode)
+    (setq elpy-remove-modeline-lighter nil
+          elpy-modules '(elpy-module-sane-defaults
+                         elpy-module-company
+                         elpy-module-eldoc))
+    (elpy-enable)
+    (spacemacs/set-leader-keys-for-major-mode 'python-mode
+      "hh" 'elpy-doc
+      "gg" 'elpy-goto-definition
+      "ia" 'elpy-importmagic-add-import
+      "ii" 'elpy-importmagic-fixup))
+  )

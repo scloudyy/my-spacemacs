@@ -23,7 +23,7 @@ values."
      ;; Uncomment a layer name and press C-c C-c to install it
      ;;  Guide key
      ;; --------------------------------------------------------
-     (spacemacs-ivy :step pre)
+     spacemacs-ivy
      spacemacs-helm
      better-defaults
      github
@@ -76,13 +76,13 @@ values."
              rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed.org"))
      deft
      (clojure :variables clojure-enable-fancify-symbols t)
-     (scloudyy :step post)
+     scloudyy
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(elpy)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
                                     auto-complete
@@ -99,6 +99,8 @@ values."
                                     define-word
                                     solarized-theme
                                     ;; remove mode for python layer
+                                    anaconda-mode
+                                    company-anaconda
                                         ;nose
                                         ;pony-mode
                                         ;hy-mode
