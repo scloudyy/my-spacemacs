@@ -26,7 +26,6 @@ values."
      spacemacs-ivy
      spacemacs-helm
      better-defaults
-     github
      semantic                           ; too slow
      markdown
      org
@@ -34,8 +33,6 @@ values."
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil
                       syntax-checking-enable-by-default t)
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil)
      python
      emacs-lisp
      ycmd
@@ -77,13 +74,14 @@ values."
      deft
      (clojure :variables clojure-enable-fancify-symbols t)
      unimpaired
+     html
      scloudyy
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(elpy)
+   dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
                                     auto-complete
@@ -100,8 +98,8 @@ values."
                                     define-word
                                     solarized-theme
                                     ;; remove mode for python layer
-                                    anaconda-mode
-                                    company-anaconda
+                                    ;; anaconda-mode
+                                    ;; company-anaconda
                                         ;nose
                                         ;pony-mode
                                         ;hy-mode
@@ -170,10 +168,10 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         monokai
                          spacemacs-dark
+                         monokai
+                         solarized-light
                          solarized-dark
-                         solarized-night
                          sanityinc-tomorrow-eighties
                          zenburn
                          )
@@ -305,13 +303,19 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'all
    ))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+  (custom-set-variables '(spacemacs-theme-custom-colors
+                          '((bg1 . "#282828")
+                            (bg2 . "#303030")
+                            (comment-bg . "#282828")
+                            (lnum . "606060"))))
+
   (setq exec-path-from-shell-check-startup-files nil)
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
@@ -328,7 +332,7 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  (setq browse-url-browser-function 'browse-url-firefox)
+  (setq browse-url-browser-function 'browse-url-chromium)
 
   (with-eval-after-load 'hybrid-mode
     (spacemacs|diminish hybrid-mode))

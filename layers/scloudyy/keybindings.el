@@ -78,13 +78,6 @@
 (define-key dired-mode-map (kbd "z") 'dired-get-size)
 (define-key dired-mode-map (kbd "f") 'helm-find-files)
 
-(global-set-key (kbd "C-M-_") 'spacemacs/zoom-frm-out)
-(global-set-key (kbd "C-M-+") 'spacemacs/zoom-frm-in)
-
-(global-set-key (kbd "C-;") 'helm-swoop)
-
-(spacemacs/set-leader-keys "a." 'helm-browse-url-firefox)
-
 (bind-key* (kbd "C-s") 'save-buffer)
 (bind-key* (kbd "C-f") 'isearch-forward)
 
@@ -101,8 +94,8 @@
 (bind-key* (kbd "M-k M-e") 'slcoudyy/Change-To-En-Input-Method)
 (bind-key* (kbd "M-k c") 'slcoudyy/Change-To-Ch-Input-Method)
 (bind-key* (kbd "M-k M-c") 'slcoudyy/Change-To-Ch-Input-Method)
-(bind-key* (kbd "M-k M-i") 'helm-M-x)
-(bind-key* (kbd "M-k i") 'helm-M-x)
+(bind-key* (kbd "M-k M-i") 'counsel-M-x)
+(bind-key* (kbd "M-k i") 'counsel-M-x)
 (bind-key* (kbd "M-k f") 'fasd-find-file)
 (bind-key* (kbd "M-k M-s") 'hippie-expand)
 (bind-key* (kbd "M-k s") 'hippie-expand)

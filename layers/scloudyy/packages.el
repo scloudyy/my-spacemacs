@@ -39,7 +39,7 @@
         eshell
         deft
         helm-gtags
-        elpy
+        ;; elpy
         smartparens
         which-key
         evil-org
@@ -1258,12 +1258,14 @@ open and unsaved."
   (setq deft-recursive t))
 
 (defun scloudyy/post-init-chinese-pyim()
-  (setq pyim-enable-words-predict nil))
+  (setq pyim-enable-words-predict nil)
+  (setq pyim-use-tooltip 'pos-tip)
+  (setq x-gtk-use-system-tooltips t))
 
 (defun scloudyy/post-init-flycheck ()
   (with-eval-after-load 'flycheck
     (progn
-      (setq flycheck-display-errors-delay 0.2))))
+      (setq flycheck-check-syntax-automatically '(mode-enabled save)))))
 
 (defun scloudyy/post-init-helm-gtags ()
   (eval-after-load 'helm-gtags
