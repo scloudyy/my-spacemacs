@@ -102,3 +102,5 @@
 (bind-key* (kbd "M-k w") 'ace-window)
 (bind-key* (kbd "M-k M-w") 'ace-window)
 (bind-key* (kbd "M-L") 'downcase-word)
+
+(bind-key* (kbd "M-]") 'pyim-forward-word)

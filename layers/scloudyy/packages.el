@@ -39,7 +39,7 @@
         eshell
         deft
         helm-gtags
-        ;; elpy
+        elpy
         smartparens
         which-key
         evil-org
@@ -234,7 +234,7 @@
     :defer t
     :init
     (setq org-image-actual-width '(700))
-    
+
     ;; define the refile targets
     (setq org-agenda-files (quote ("~/KuaiPan/org-notes" )))
     (setq org-default-notes-file "~/KuaiPan/org-notes/gtd.org")
