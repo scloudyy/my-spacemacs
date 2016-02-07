@@ -75,6 +75,8 @@ values."
      (clojure :variables clojure-enable-fancify-symbols t)
      unimpaired
      html
+     javascript
+     java
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -106,11 +108,12 @@ values."
                                     ;;remove from extra-langs
                                     arduino-mode
                                     julia-mode
+                                    faust-mode
                                     qml-mode
                                     scad-mode
                                     stan-mode
-                                    wolfram-mode
                                     thrift
+                                    wolfram-mode
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -211,7 +214,7 @@ values."
    dotspacemacs-default-layout-name "Scloudyy"
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   dotspacemacs-display-default-layout t
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
@@ -310,9 +313,13 @@ any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (custom-set-variables '(spacemacs-theme-custom-colors
                           '(
-                            (bg2 . "#383838")
+                            (keyword . "#4f97d7")
+                            (func . "#bc6ec5")
+                            (type . "#ce537a")
+
+                            (bg2 . "#3f3f3f")
                             (comment-bg . "#282828")
-                            (lnum . "606060")
+                            (lnum . "#f8f8f2")
                             (str . "#e7f569")
                             (var . "#66ff00")
                             (highlight . "#383838")
@@ -335,6 +342,19 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (define-key evil-emacs-state-map
+    (kbd "C-z") 'undo-tree-undo)
+
+  (define-key evil-motion-state-map
+    (kbd "C-z") 'undo-tree-undo)
+
+  (define-key evil-insert-state-map
+    (kbd "C-z") 'undo-tree-undo)
+
+  (setq eclim-eclipse-dirs "~/eclipse"
+        eclim-executable "~/eclipse/eclim")
+
+  (spacemacs|disable-company org-mode)
 
   (setq browse-url-browser-function 'browse-url-chromium)
 

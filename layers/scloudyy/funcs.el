@@ -526,9 +526,11 @@ With PREFIX, cd to project root."
         )
     (message "already Ch")))
 
-(defun scloudyy/Open-Firefox()
+(defun slcoudyy/Change-Chinese-ToolTip()
   (interactive)
-  (browse-url "https://www.baidu.com"))
+  (if (equal pyim-use-tooltip nil)
+      (setq pyim-use-tooltip 'pos-tip)
+    (setq pyim-use-tooltip nil)))
 
 (defun zilongshanren/insert-semicolon-at-the-end-of-this-line ()
   (interactive)
