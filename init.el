@@ -60,7 +60,7 @@ values."
      (chinese :variables
               chinese-default-input-method 'pinyin
               chinese-enable-youdao-dict t
-              chinese-enable-fcitx t)
+              chinese-enable-fcitx nil)
      prodigy
      ranger
      spacemacs-layouts
@@ -72,11 +72,9 @@ values."
      (elfeed :variables
              rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed.org"))
      deft
-     (clojure :variables clojure-enable-fancify-symbols t)
-     unimpaired
      html
      javascript
-     java
+     asm
      scloudyy
      )
    ;; List of additional packages that will be installed without being
@@ -86,6 +84,11 @@ values."
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
+                                    flx-ido
+                                    chinese-wbim
+                                    smooth-scroll
+                                    evil-escape
+                                    coffee-mode
                                     auto-complete
                                     magit-gh-pulls
                                     magit-gitflow
@@ -99,12 +102,13 @@ values."
                                     evil-tutor
                                     define-word
                                     solarized-theme
+                                    leuven-theme
                                     ;; remove mode for python layer
-                                    anaconda-mode
-                                    company-anaconda
-                                        ;nose
-                                        ;pony-mode
-                                        ;hy-mode
+                                    ;; anaconda-mode
+                                    ;; company-anaconda
+                                    ;; nose
+                                    ;; pony-mode
+                                    ;; hy-mode
                                     ;;remove from extra-langs
                                     arduino-mode
                                     julia-mode
@@ -342,6 +346,21 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (setq-default
+   ;; js2-mode
+   js2-basic-offset 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
+
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
   (define-key evil-emacs-state-map
     (kbd "C-z") 'undo-tree-undo)
 

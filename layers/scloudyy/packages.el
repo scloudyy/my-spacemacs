@@ -39,7 +39,7 @@
         eshell
         deft
         helm-gtags
-        elpy
+        ;; elpy
         smartparens
         which-key
         evil-org
@@ -145,23 +145,6 @@
           (rename-buffer new-buffer-name t)))
 
       (add-hook 'cmake-mode-hook (function cmake-rename-buffer)))))
-
-;; (defun scloudyy/post-init-flycheck ()
-;;   ;(use-package flycheck
-;;   ;  :defer t
-;;   ;  :config (progn
-;;               ;(flycheck-package-setup)
-;;               ;(setq flycheck-display-errors-function 'flycheck-display-error-messages)
-;;               (setq flycheck-display-errors-delay 0.2)
-;;               (dolist (mode '(c-mode-hook c++-mode-hook))
-;;                 (spacemacs/add-flycheck-hook mode))
-;;              ; (spacemacs|evilify-map flycheck-error-list-mode-map
-;;              ;   :mode flycheck-error-list-mode
-;;              ;   :bindings
-;;              ;   (kbd "RET") 'flycheck-error-list-goto-error)
-;;              ;  (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
-;;               ; ))
-;; )
 
 ;; configs for writing
 (defun scloudyy/post-init-markdown-mode ()
@@ -349,7 +332,7 @@
       (interactive
        (let ((src-code-types
               '("emacs-lisp" "python" "html" "C" "sh" "java" "js" "clojure"
-                "C++" "css"  "sql" "awk" "latex" "lisp" "matlab" "org"
+                "C++" "css"  "sql" "latex" "lisp" "matlab" "org" "asm"
                 )))
          (list (ido-completing-read "Source code type: " src-code-types))))
       (progn

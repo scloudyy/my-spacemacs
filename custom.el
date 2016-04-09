@@ -45,7 +45,7 @@
  '(paradox-github-token t)
  '(pyim-dicts
    (quote
-    ((:name "pyim" :file "/home/sclouds/.emacs.d/.cache/pyim-bigdict.pyim" :coding utf-8-unix :dict-type pinyin-dict))))
+    ((:name "pyim" :file "~/.emacs.d/.cache/pyim-bigdict.pyim" :coding utf-8-unix :dict-type pinyin-dict))))
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values
    (quote
