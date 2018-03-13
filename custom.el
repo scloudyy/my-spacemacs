@@ -18,7 +18,6 @@
  '(expand-region-contract-fast-key "V")
  '(expand-region-exclude-text-mode-expansions (quote (html-mode nxml-mode web-mode)))
  '(expand-region-reset-fast-key "r")
- '(flycheck-display-errors-delay 0.4)
  '(golden-ratio-exclude-modes
    (quote
     ("bs-mode" "calc-mode" "ediff-mode" "dired-mode" "gud-mode" "gdb-locals-mode" "gdb-registers-mode" "gdb-breakpoints-mode" "gdb-threads-mode" "gdb-frames-mode" "gdb-inferior-io-mode" "gud-mode" "gdb-inferior-io-mode" "gdb-disassembly-mode" "gdb-memory-mode" "restclient-mode" "speedbar-mode" term-mode)))
@@ -46,7 +45,7 @@
  '(paradox-github-token t)
  '(pyim-dicts
    (quote
-    ((:name "pyim" :file "/home/sclouds/.emacs.d/.cache/pyim-bigdict.pyim" :coding utf-8-unix :dict-type pinyin-dict))))
+    ((:name "pyim" :file "~/.emacs.d/.cache/pyim-bigdict.pyim" :coding utf-8-unix :dict-type pinyin-dict))))
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values
    (quote
@@ -63,16 +62,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C"))))
- '(company-tooltip-annotation ((t (:inherit company-tooltip :foreground "green"))))
+ '(company-tooltip-annotation ((t (:inherit company-tooltip :foreground "#66ff00"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
- '(helm-ls-git-modified-and-staged-face ((t (:foreground "dark cyan"))))
- '(helm-ls-git-modified-not-staged-face ((t (:foreground "dark cyan"))))
- '(helm-ls-git-renamed-modified-face ((t (:foreground "dark cyan"))))
- '(js2-error ((t (:foreground "light sea green"))))
- '(js2-external-variable ((t (:foreground "gray52"))))
- '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
+ )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

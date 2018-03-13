@@ -3,3 +3,4 @@
 **** http://nullprogram.com/feed/
 **** http://emacsist.com/rss
 **** http://zilongshanren.com/atom.xml
+**** http://blog.binchen.org/rss.xml

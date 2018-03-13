@@ -273,7 +273,7 @@ org-files and bookmarks"
                   ("Calculator" . (lambda () (helm-calcul-expression)))
                   ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
                   ("Agenda" . (lambda () (org-agenda "" "a")))
-                  ("Firefox" . (lambda () (scloudyy/Open-Firefox)))
+                  ("Browser" . (lambda () (scloudyy/Open-Firefox)))
                   ("sicp" . (lambda() (browse-url "http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html#%_toc_start")))))
    (candidate-number-limit)
    (action . (("Open" . (lambda (x) (funcall x)))))))
@@ -504,7 +504,7 @@ With PREFIX, cd to project root."
   (shell-command-to-string "cp ~/.tmux.conf ~/Github/my-config/tmux")
   (shell-command-to-string "cp ~/.keysnail.js ~/Github/my-config/keysnail")
   (shell-command-to-string "cp ~/_vimrc ~/Github/my-config/vim")
-  (message "Done")
+  (message "Done!")
   )
 
 
@@ -526,12 +526,40 @@ With PREFIX, cd to project root."
         )
     (message "already Ch")))
 
-(defun scloudyy/Open-Firefox()
+(defun slcoudyy/Change-Chinese-ToolTip()
   (interactive)
-  (browse-url "https://www.baidu.com"))
+  (if (equal pyim-use-tooltip nil)
+      (setq pyim-use-tooltip 'pos-tip)
+    (setq pyim-use-tooltip nil)))
 
 (defun zilongshanren/insert-semicolon-at-the-end-of-this-line ()
   (interactive)
   (save-excursion
     (end-of-line)
-    (insert ";")))
+    (insert ";"))
+  (evil-normal-state))
+
+(defun scloudyy/latex-online()
+  (interactive)
+  (browse-url "http://latex.codecogs.com/eqneditor/editor.php"))
+
+(defun company-ycmd-semantic-complete ()
+  (interactive)
+  (company-abort)
+  (let ((ycmd-force-semantic-completion t))
+    (company-complete))
+  )
+
+(defun helm-git ()
+  "Find file in the current Git repository."
+  (interactive)
+  (setq counsel--git-dir (expand-file-name
+                          (locate-dominating-file
+                           default-directory ".git")))
+  (let* ((default-directory counsel--git-dir)
+         (cands (split-string
+                 (shell-command-to-string
+                  "git ls-files --full-name --")
+                 "\n"
+                 t)))
+    (helm-comp-read "Find file: " cands)))

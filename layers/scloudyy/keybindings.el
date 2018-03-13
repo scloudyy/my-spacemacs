@@ -52,6 +52,8 @@
 (when (spacemacs/system-is-mac)
  (evil-leader/set-key "o!" 'zilongshanren/iterm-shell-command))
 
+(evil-leader/set-key "opf" 'helm-ls-git-ls)
+
 (spacemacs|add-toggle toggle-shadowsocks-proxy-mode
     :status shadowsocks-proxy-mode
     :on (global-shadowsocks-proxy-mode)
@@ -59,16 +61,12 @@
     :documentation "Toggle shadowsocks proxy mode."
     :evil-leader "toP")
 
-(global-set-key (kbd "s-s") 'save-buffer)
 (bind-key* "s-k" 'scroll-other-window-down)
 (bind-key* "s-j"  'scroll-other-window)
 (bind-key* "C-c /" 'company-files)
 
 (global-set-key (kbd "M-f") 'pyim-forward-word)
 (global-set-key (kbd "M-b") 'pyim-backward-word)
-
-(global-set-key (kbd "C-x x") 'helm-M-x)
-(global-set-key (kbd "C-x j") 'fasd-find-file)
 
 (eval-after-load 'dired-mode
      (progn
@@ -80,23 +78,29 @@
 (define-key dired-mode-map (kbd "z") 'dired-get-size)
 (define-key dired-mode-map (kbd "f") 'helm-find-files)
 
-(global-set-key (kbd "C-M-_") 'spacemacs/zoom-frm-out)
-(global-set-key (kbd "C-M-+") 'spacemacs/zoom-frm-in)
+(bind-key* (kbd "C-s") 'save-buffer)
+(bind-key* (kbd "C-f") 'isearch-forward)
 
-(global-set-key (kbd "C-;") 'helm-swoop)
-(bind-key* "C-s" 'isearch-forward)
-
-(evil-leader/set-key "a." 'helm-browse-url-firefox)
-
-(bind-key* (kbd "M-j") 'evil-normal-state)
 (bind-key* (kbd "M-J") 'indent-new-comment-line)
+(bind-key* (kbd "M-j") 'evil-normal-state)
 
 ;; my global leader key
+;; 单M右手，双M左手
+(bind-key* (kbd "M-K") 'kill-sentence)
 (bind-key* (kbd "M-k M-k") 'evil-avy-goto-char-2)
-(bind-key* (kbd "M-k M-j") 'evil-avy-goto-word-or-subword-1)
 (bind-key* (kbd "M-k h") 'scloudyy/hotspots)
 (bind-key* (kbd "M-k ;") 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
-(bind-key* (kbd "M-k o") 'org-capture)
-(bind-key* (kbd "M-K") 'kill-sentence)
 (bind-key* (kbd "M-k e") 'slcoudyy/Change-To-En-Input-Method)
+(bind-key* (kbd "M-k M-e") 'slcoudyy/Change-To-En-Input-Method)
 (bind-key* (kbd "M-k c") 'slcoudyy/Change-To-Ch-Input-Method)
+(bind-key* (kbd "M-k M-c") 'slcoudyy/Change-To-Ch-Input-Method)
+(bind-key* (kbd "M-k M-i") 'counsel-M-x)
+(bind-key* (kbd "M-k i") 'counsel-M-x)
+(bind-key* (kbd "M-k f") 'fasd-find-file)
+(bind-key* (kbd "M-k M-s") 'hippie-expand)
+(bind-key* (kbd "M-k s") 'hippie-expand)
+(bind-key* (kbd "M-k w") 'ace-window)
+(bind-key* (kbd "M-k M-w") 'ace-window)
+(bind-key* (kbd "M-L") 'downcase-word)
+
+(bind-key* (kbd "M-]") 'pyim-forward-word)

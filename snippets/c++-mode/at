@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: at
+# key: atv
+# --
+at<Vec3b>(${1:i}, ${2:j})[${3:c}]$0

@@ -2,4 +2,4 @@
 # name: Inline Latex
 # key: il
 # --
-\($1\)$0
+\\($1\\)$0
