@@ -1,6 +1,6 @@
 ;; packages.el --- scloudyy Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 scloudyy
+;; Copyright (c) 2015-2018 scloudyy
 ;;
 ;; Author: scloudyy <onecloud.shen@gmail.com>
 ;; URL: https://github.com/scloudyy/my-spacemacs.git
@@ -15,112 +15,138 @@
       '(
         evil
         company
-        cmake
-        flycheck
-        markdown
-        helm
+        cmake-mode
+        ;; flycheck
+        markdown-mode
+        ;; helm
         ace-window
         org
-        youdao-dictionary
-        powerline
+        ;; powerline
         yasnippet
         cc-mode
-        ycmd
+        ;; ycmd
         whitespace
-        chinese-pyim
+        ;; chinese-pyim
         avy
         prodigy
-        helm-github-stars
+        ;; helm-github-stars
         (dired-mode :location built-in)
-        (occur-mode :location built-in)
         persp-mode
         engine-mode
-        beacon
+        ;; beacon
         eshell
-        deft
-        helm-gtags
+        ;; deft
+        ;; helm-gtags
         ;; elpy
         smartparens
-        which-key
+        ;; which-key
         evil-org
         ))
 
 ;;configs for EVIL mode
 (defun scloudyy/post-init-evil ()
-  (use-package evil
-    :init
-    (progn
-      ;; make underscore as word_motion.
-      (modify-syntax-entry ?_ "w")
-      ;; ;; change evil initial mode state
-      (loop for (mode . state) in
-            '((shell-mode . normal))
-            do (evil-set-initial-state mode state))
+  (progn
+    (setcdr evil-insert-state-map nil)
+    (define-key evil-insert-state-map [escape] 'evil-normal-state)
 
-      ;;mimic "nzz" behaviou in vim
-      (defadvice evil-ex-search-next (after advice-for-evil-search-next activate)
-        (evil-scroll-line-to-center (line-number-at-pos)))
+    ;; disable highlight when use swiper or evil ex search, this option won't effect evil-ex-search-next command
+    (setq-default evil-ex-search-persistent-highlight nil)
 
-      (defadvice evil-ex-search-previous (after advice-for-evil-search-previous activate)
-        (evil-scroll-line-to-center (line-number-at-pos)))
+    (push "TAGS" spacemacs-useless-buffers-regexp)
 
-      (define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
+    ;; (adjust-major-mode-keymap-with-evil "git-timemachine")
+    ;; (adjust-major-mode-keymap-with-evil "tabulated-list")
 
-      (define-key evil-normal-state-map
-        (kbd "Y") 'zilongshanren/yank-to-end-of-line)
+    (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
+    (define-key evil-insert-state-map (kbd "C-r") 'evil-paste-from-register)
 
-      ;; rebind g,k to gj and gk
-      (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-      (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+    ;; ;; change evil initial mode state
+    (loop for (mode . state) in
+          '((shell-mode . normal))
+          do (evil-set-initial-state mode state))
 
-      ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
-      ;; (define-key evil-insert-state-map "\C-n" 'next-line)
-      ;; (define-key evil-insert-state-map "\C-k" 'kill-line)
-      (define-key evil-emacs-state-map (kbd "s-f") 'forward-word)
-      (define-key evil-emacs-state-map (kbd "s-b") 'backward-word)
+    ;;mimic "nzz" behaviou in vim
+    (defadvice evil-search-next (after advice-for-evil-search-next activate)
+      (evil-scroll-line-to-center (line-number-at-pos)))
 
-      (evil-leader/set-key "bi" 'ibuffer)
-      (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
-      (define-key evil-ex-completion-map "\C-b" 'backward-char)
-      (define-key evil-ex-completion-map "\C-k" 'kill-line)
-      (define-key minibuffer-local-map (kbd "C-w") 'evil-delete-backward-word)
+    (defadvice evil-search-previous (after advice-for-evil-search-previous activate)
+      (evil-scroll-line-to-center (line-number-at-pos)))
 
-      (define-key evil-visual-state-map (kbd ">") 'prelude-shift-right-visual)
-      (define-key evil-visual-state-map (kbd "<") 'prelude-shift-left-visual)
-      (define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
-      (define-key evil-visual-state-map (kbd "x") 'er/expand-region)
-      (define-key evil-visual-state-map (kbd "X") 'er/contract-region)
-      (define-key evil-visual-state-map (kbd "C-r") 'zilongshanren/evil-quick-replace)
+    (define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
 
-      ;; in spacemacs, we always use evilify miscro state
-      (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
+    (defun my-evil-yank ()
+      (interactive)
+      (save-excursion
+        (call-interactively 'evil-yank))
+      (backward-char))
 
-      ;; (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
-      (define-key evil-emacs-state-map (kbd "C-w") 'evil-delete-backward-word)
-      ;; (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)
-      ;; (define-key evil-emacs-state-map (kbd "C-w k") 'evil-window-up)
-      ;; (define-key evil-emacs-state-map (kbd "C-w l") 'evil-window-right)
+    (define-key evil-visual-state-map (kbd "y") 'my-evil-yank)
 
-      ;; for emacs shell mode
-      ;; (define-key evil-emacs-state-map (kbd "s-b") 'ido-switch-buffer)
-      ;; (define-key evil-emacs-state-map (kbd "s-f") 'ido-find-file)
-      (evil-define-key 'emacs term-raw-map (kbd "C-w")
-        'evil-delete-backward-word)
-      (define-key evil-emacs-state-map (kbd "s-p") 'projectile-switch-project)
+    (define-key evil-normal-state-map
+      (kbd "Y") 'zilongshanren/yank-to-end-of-line)
 
-      (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer)
+    ;; rebind g,k to gj and gk
+    ;; (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+    ;; (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-      ;; enable hybrid editing style
-      (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
-        "Preparing the holy water flasks."
-        (evil-emacs-state))
-      (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
-      (bind-keys ("<C-[>" . evil-normal-state))
-      (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
-      (define-key evil-emacs-state-map [escape] 'evil-normal-state)
+    (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
+    (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
 
 
-      )))
+    (define-key evil-normal-state-map (kbd "[ b") 'previous-buffer)
+    (define-key evil-normal-state-map (kbd "] b") 'next-buffer)
+    (define-key evil-normal-state-map (kbd "M-y") 'counsel-yank-pop)
+
+    ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
+    ;; (define-key evil-insert-state-map "\C-n" 'next-line)
+    ;; (define-key evil-insert-state-map "\C-k" 'kill-line)
+    (define-key evil-emacs-state-map (kbd "s-f") 'forward-word)
+    (define-key evil-insert-state-map (kbd "s-f") 'forward-word)
+    (define-key evil-emacs-state-map (kbd "s-b") 'backward-word)
+    (define-key evil-insert-state-map (kbd "s-b") 'backward-word)
+
+    (spacemacs/set-leader-keys "bi" 'ibuffer)
+    (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
+    (define-key evil-ex-completion-map "\C-b" 'backward-char)
+    (define-key evil-ex-completion-map "\C-k" 'kill-line)
+    (define-key minibuffer-local-map (kbd "C-w") 'evil-delete-backward-word)
+
+    (define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
+    ;; (define-key evil-visual-state-map (kbd "x") 'er/expand-region)
+    ;; (define-key evil-visual-state-map (kbd "X") 'er/contract-region)
+    (define-key evil-visual-state-map (kbd "C-r") 'zilongshanren/evil-quick-replace)
+    (define-key evil-visual-state-map (kbd "mn") 'mc/mark-next-like-this)
+    (define-key evil-visual-state-map (kbd "mp") 'mc/mark-previous-like-this)
+    (define-key evil-visual-state-map (kbd "ma") 'mc/mark-all-like-this)
+    (define-key evil-visual-state-map (kbd "mf") 'mc/mark-all-like-this-in-defun)
+
+
+    ;; in spacemacs, we always use evilify miscro state
+    (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
+    ;; Don't move back the cursor one position when exiting insert mode
+    (setq evil-move-cursor-back nil)
+
+    ;; (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
+    (define-key evil-emacs-state-map (kbd "C-w") 'evil-delete-backward-word)
+    ;; (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)
+    ;; (define-key evil-emacs-state-map (kbd "C-w k") 'evil-window-up)
+    ;; (define-key evil-emacs-state-map (kbd "C-w l") 'evil-window-right)
+
+    ;; for emacs shell mode
+    ;; (define-key evil-emacs-state-map (kbd "s-b") 'ido-switch-buffer)
+    ;; (define-key evil-emacs-state-map (kbd "s-f") 'ido-find-file)
+    (evil-define-key 'emacs term-raw-map (kbd "C-w")
+      'evil-delete-backward-word)
+
+
+    (setq evil-normal-state-tag   (propertize "[N]" 'face '((:background "DarkGoldenrod2" :foreground "black")))
+          evil-emacs-state-tag    (propertize "[E]" 'face '((:background "SkyBlue2" :foreground "black")))
+          evil-insert-state-tag   (propertize "[I]" 'face '((:background "chartreuse3") :foreground "white"))
+          evil-motion-state-tag   (propertize "[M]" 'face '((:background "plum3") :foreground "white"))
+          evil-visual-state-tag   (propertize "[V]" 'face '((:background "gray" :foreground "black")))
+          evil-operator-state-tag (propertize "[O]" 'face '((:background "purple"))))
+    (setq evil-insert-state-cursor '("chartreuse3" box))
+    ))
 
 (defun scloudyy/post-init-company ()
   (setq company-minimum-prefix-length 1
@@ -164,45 +190,45 @@
       (evil-leader/set-key-for-mode 'markdown-mode
         "mp" 'zilongshanren/markdown-to-html))))
 
-(defun scloudyy/post-init-helm ()
-  (use-package helm
-    :init
-    (progn
-      (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
-      ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
-      ;; discussion of these options.
-      (setq helm-split-window-in-side-p t
-            helm-move-to-line-cycle-in-source t
-            helm-ff-search-library-in-sexp t
-            helm-ff-file-name-history-use-recentf t)
+;; (defun scloudyy/post-init-helm ()
+;;   (use-package helm
+;;     :init
+;;     (progn
+;;       (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
+;;       ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
+;;       ;; discussion of these options.
+;;       (setq helm-split-window-in-side-p t
+;;             helm-move-to-line-cycle-in-source t
+;;             helm-ff-search-library-in-sexp t
+;;             helm-ff-file-name-history-use-recentf t)
 
-      (setq helm-completing-read-handlers-alist
-            '((describe-function . ido)
-              (describe-variable . ido)
-              (debug-on-entry . helm-completing-read-symbols)
-              (find-function . helm-completing-read-symbols)
-              (find-tag . helm-completing-read-with-cands-in-buffer)
-              (ffap-alternate-file . nil)
-              (tmm-menubar . nil)
-              (dired-do-copy . nil)
-              (dired-do-rename . nil)
-              (dired-create-directory . nil)
-              (find-file . ido)
-              (copy-file-and-rename-buffer . nil)
-              (rename-file-and-buffer . nil)
-              (w3m-goto-url . nil)
-              (ido-find-file . nil)
-              (ido-edit-input . nil)
-              (mml-attach-file . ido)
-              (read-file-name . nil)
-              (yas/compile-directory . ido)
-              (execute-extended-command . ido)
-              (minibuffer-completion-help . nil)
-              (minibuffer-complete . nil)
-              (c-set-offset . nil)
-              (wg-load . ido)
-              (rgrep . nil)
-              (read-directory-name . ido))))))
+;;       (setq helm-completing-read-handlers-alist
+;;             '((describe-function . ido)
+;;               (describe-variable . ido)
+;;               (debug-on-entry . helm-completing-read-symbols)
+;;               (find-function . helm-completing-read-symbols)
+;;               (find-tag . helm-completing-read-with-cands-in-buffer)
+;;               (ffap-alternate-file . nil)
+;;               (tmm-menubar . nil)
+;;               (dired-do-copy . nil)
+;;               (dired-do-rename . nil)
+;;               (dired-create-directory . nil)
+;;               (find-file . ido)
+;;               (copy-file-and-rename-buffer . nil)
+;;               (rename-file-and-buffer . nil)
+;;               (w3m-goto-url . nil)
+;;               (ido-find-file . nil)
+;;               (ido-edit-input . nil)
+;;               (mml-attach-file . ido)
+;;               (read-file-name . nil)
+;;               (yas/compile-directory . ido)
+;;               (execute-extended-command . ido)
+;;               (minibuffer-completion-help . nil)
+;;               (minibuffer-complete . nil)
+;;               (c-set-offset . nil)
+;;               (wg-load . ido)
+;;               (rgrep . nil)
+;;               (read-directory-name . ido))))))
 
 (defun scloudyy/post-init-org()
   (use-package org
@@ -387,7 +413,6 @@
             (goto-char (point-min))
             (forward-line (1- (string-to-number (cadr lst)))))))
 
-
       (use-package recentf
         :config
         (setq recentf-exclude
@@ -413,8 +438,8 @@
 (defun scloudyy/post-init-youdao-dictionary ()
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+))
 
-(defun sclouydyy/post-init-powerline ()
-  (setq powerline-default-separator 'arrow))
+;; (defun sclouydyy/post-init-powerline ()
+;;   (setq powerline-default-separator 'arrow))
 
 (defun scloudyy/post-init-yasnippet ()
   (progn
@@ -460,13 +485,13 @@
   )
 
 
-(defun scloudyy/post-init-ycmd ()
-  (setq ycmd-tag-files 'auto)
-  (setq ycmd-request-message-level -1)
-  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
-  (require 'cc-mode)
-  (define-key c++-mode-map (kbd "M-[") 'ycmd-goto)
-  )
+;; (defun scloudyy/post-init-ycmd ()
+;;   (setq ycmd-tag-files 'auto)
+;;   (setq ycmd-request-message-level -1)
+;;   (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
+;;   (require 'cc-mode)
+;;   (define-key c++-mode-map (kbd "M-[") 'ycmd-goto)
+;;   )
 
 (defun scloudyy/post-init-whitespace ()
   (set-face-attribute 'whitespace-tab nil
@@ -513,85 +538,70 @@
       (define-key global-map (kbd "C-c r") 'vr/replace)
       (define-key global-map (kbd "C-c q") 'vr/query-replace))))
 
-(defun scloudyy/post-init-avy ()
-  (use-package avy
-    :defer t
-    :init
-    (progn
-      (require 'ace-pinyin)
-      (setq ace-pinyin-use-avy t))))
+;; (defun scloudyy/post-init-avy ()
+;;   (use-package avy
+;;     :defer t
+;;     :init
+;;     (progn
+;;       (require 'ace-pinyin)
+;;       (setq ace-pinyin-use-avy t))))
 
-(defun scloudyy/init-hydra ()
-  (use-package hydra
-    :init
-    (progn
-      (when (configuration-layer/package-usedp 'org)
-        ;; major mode hydra is really cool, don't need to switch mode anymore
-        ;; C-c [a-z] and s-[a-z] is very quick to pressed even in emacs-state and F1-F9 is also the same
-        ;; If the command will change the buffer, they should be put in these groups.
-        ;; otherwise, use which-key + spacems + user defined key mappings in evil normal mode
-        (defhydra hydra-org (:color blue :hint nil)
-          "
-              ^Org Mode^
---------------------------------------------
-          _t_ags   _p_riority _P_roperty
-          "
-          ("p" org-priority)
-          ("t" org-set-tags)
-          ("P" org-set-property))
-        (require 'org)
-        (define-key org-mode-map (kbd "<f2>") 'hydra-org/body)
-        (evil-leader/set-key-for-mode 'org-mode
-          "." 'hydra-org/body)
-        )
-      (defhydra hydra-yasnippet (:color blue :hint nil)
-        "
-              ^YASnippets^
---------------------------------------------
-  Modes:    Load/Visit:    Actions:
+(defun scloudyy/post-init-hydra ()
+  (progn
+    (defhydra hydra-hotspots (:color blue)
+      "Hotspots"
+      ("b" blog-admin-start "blog")
+      ("g" helm-github-stars "helm github stars")
+      ("r" zilongshanren/run-current-file "run current file"))
 
- _g_lobal  _d_irectory    _i_nsert
- _m_inor   _f_ile         _t_ryout
- _e_xtra   _l_ist         _n_ew
-         _a_ll
-"
-        ("d" yas-load-directory)
-        ("e" yas-activate-extra-mode)
-        ("i" yas-insert-snippet)
-        ("f" yas-visit-snippet-file :color blue)
-        ("n" yas-new-snippet)
-        ("t" yas-tryout-snippet)
-        ("l" yas-describe-tables)
-        ("g" yas/global-mode)
-        ("m" yas/minor-mode)
-        ("a" yas-reload-all))
+    (defhydra multiple-cursors-hydra (:hint nil)
+      "
+       ^Up^            ^Down^        ^Other^
+             ----------------------------------------------
+         [_p_]   Next    [_n_]   Next    [_l_] Edit lines
+         [_P_]   Skip    [_N_]   Skip    [_a_] Mark all
+         [_M-p_] Unmark  [_M-n_] Unmark [_r_] Mark by regexp
+         ^ ^             ^ ^ [_q_] Quit
+       "
+      ("l" mc/edit-lines :exit t)
+      ("a" mc/mark-all-like-this :exit t)
+      ("n" mc/mark-next-like-this)
+      ("N" mc/skip-to-next-like-this)
+      ("M-n" mc/unmark-next-like-this)
+      ("p" mc/mark-previous-like-this)
+      ("P" mc/skip-to-previous-like-this)
+      ("M-p" mc/unmark-previous-like-this)
+      ("r" mc/mark-all-in-region-regexp :exit t)
+      ("q"
+       nil))
 
-      ;; (bind-key* "<f3>" 'hydra-yasnippet/body)
+    (defhydra
+      hydra-apropos (:color blue)
+      "Apropos"
+      ("a" apropos "apropos")
+      ("c" apropos-command "cmd")
+      ("d" apropos-documentation "doc")
+      ("e" apropos-value "val")
+      ("l" apropos-library "lib")
+      ("o" apropos-user-option "option")
+      ("u" apropos-user-option "option")
+      ("v" apropos-variable "var")
+      ("i" info-apropos "info")
+      ("t" tags-apropos "tags")
+      ("z" hydra-customize-apropos/body "customize"))
 
-      (defhydra hydra-apropos (:color blue)
-        "Apropos"
-        ("a" apropos "apropos")
-        ("c" apropos-command "cmd")
-        ("d" apropos-documentation "doc")
-        ("e" apropos-value "val")
-        ("l" apropos-library "lib")
-        ("o" apropos-user-option "option")
-        ("u" apropos-user-option "option")
-        ("v" apropos-variable "var")
-        ("i" info-apropos "info")
-        ("t" tags-apropos "tags")
-        ("z" hydra-customize-apropos/body "customize"))
+    (defhydra
+      hydra-customize-apropos (:color blue)
+      "Apropos (customize)"
+      ("a" customize-apropos "apropos")
+      ("f" customize-apropos-faces "faces")
+      ("g" customize-apropos-groups "groups")
+      ("o" customize-apropos-options "options"))
 
-      (defhydra hydra-customize-apropos (:color blue)
-        "Apropos (customize)"
-        ("a" customize-apropos "apropos")
-        ("f" customize-apropos-faces "faces")
-        ("g" customize-apropos-groups "groups")
-        ("o" customize-apropos-options "options"))
-
-      (bind-key*  "<f4>" 'hydra-apropos/body)
-      )))
-
+    (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
+    (spacemacs/set-leader-keys "oo" 'hydra-hotspots/body)
+    ;; (bind-key*  "<f4>" 'hydra-apropos/body)
+    (spacemacs/set-leader-keys "oh" 'hydra-apropos/body)))
 
 (defun scloudyy/post-init-prodigy ()
   (prodigy-define-tag
@@ -619,29 +629,29 @@
     :kill-process-buffer-on-stop t)
 )
 
-(defun scloudyy/init-helm-github-stars ()
-  (use-package helm-github-stars
-    :defer t
-    :config
-    (progn
-      (setq helm-github-stars-username "scloudyy")
-      (setq helm-github-stars-cache-file "~/.emacs.d/.cache/hgs-cache"))))
+;; (defun scloudyy/init-helm-github-stars ()
+;;   (use-package helm-github-stars
+;;     :defer t
+;;     :config
+;;     (progn
+;;       (setq helm-github-stars-username "scloudyy")
+;;       (setq helm-github-stars-cache-file "~/.emacs.d/.cache/hgs-cache"))))
 
-(defun scloudyy/init-w3m ()
-  ;;http://blog.chinaunix.net/uid-26185912-id-3248452.html
-  ;;http://www.cnblogs.com/FelixLee/archive/2011/04/04/2412601.html
-  (use-package w3m
-    :defer t
-    :config
-    (progn
-      (setq browse-url-browser-function 'w3m-browse-url)
-      (autoload 'w3m "w3m" "interface for w3m on emacs" t)
-      (setq w3m-command-arguments '("-cookie" "-F"))
-      (setq w3m-use-cookies t)
-      (setq w3m-home-page "http://www.baidu.com")
-      ;(require 'mime-w3m)
-      (setq w3m-default-display-inline-image nil)
-      (setq w3m-default-toggle-inline-images nil))))
+;; (defun scloudyy/init-w3m ()
+;;   ;;http://blog.chinaunix.net/uid-26185912-id-3248452.html
+;;   ;;http://www.cnblogs.com/FelixLee/archive/2011/04/04/2412601.html
+;;   (use-package w3m
+;;     :defer t
+;;     :config
+;;     (progn
+;;       (setq browse-url-browser-function 'w3m-browse-url)
+;;       (autoload 'w3m "w3m" "interface for w3m on emacs" t)
+;;       (setq w3m-command-arguments '("-cookie" "-F"))
+;;       (setq w3m-use-cookies t)
+;;       (setq w3m-home-page "http://www.baidu.com")
+;;       ;(require 'mime-w3m)
+;;       (setq w3m-default-display-inline-image nil)
+;;       (setq w3m-default-toggle-inline-images nil))))
 
 (defun scloudyy/init-dired-mode ()
   (use-package dired-mode
@@ -777,12 +787,12 @@ open and unsaved."
   )
 )
 
-(defun scloudyy/init-helm-ls-git ()
-  (use-package helm-ls-git
-    :init
-    (progn
-      ;;beautify-helm buffer when long file name is present
-      (setq helm-ls-git-show-abs-or-relative 'relative))))
+;; (defun scloudyy/init-helm-ls-git ()
+;;   (use-package helm-ls-git
+;;     :init
+;;     (progn
+;;       ;;beautify-helm buffer when long file name is present
+;;       (setq helm-ls-git-show-abs-or-relative 'relative))))
 
 (defun scloudyy/init-org-download ()
   (use-package org-download
@@ -824,36 +834,36 @@ open and unsaved."
   (evilified-state-evilify occur-mode occur-mode-map
     "RET" 'occur-mode-goto-occurrence))
 
-(defun scloudyy/post-init-mu4e()
-  );;; Set up some common mu4e variables
-(setq mu4e-maildir "~/Maildir"         ;; top-level Maildir
-      mu4e-trash-folder "/Trash"       ;; trashed messages
-      mu4e-refile-folder "/Archive"    ;; saved messages
-      mu4e-drafts-folder "/Drafts"     ;; unfinished messages
-      mu4e-sent-folder   "/Sent"       ;; folder for sent messages
-      mu4e-get-mail-command "mbsync -a"
-      mu4e-update-interval nil
-      mu4e-compose-signature-auto-include nil
-      mu4e-view-show-images t
-      mu4e-view-show-addresses t)
+;; (defun scloudyy/post-init-mu4e()
+;;   );;; Set up some common mu4e variables
+;; (setq mu4e-maildir "~/Maildir"         ;; top-level Maildir
+;;       mu4e-trash-folder "/Trash"       ;; trashed messages
+;;       mu4e-refile-folder "/Archive"    ;; saved messages
+;;       mu4e-drafts-folder "/Drafts"     ;; unfinished messages
+;;       mu4e-sent-folder   "/Sent"       ;; folder for sent messages
+;;       mu4e-get-mail-command "mbsync -a"
+;;       mu4e-update-interval nil
+;;       mu4e-compose-signature-auto-include nil
+;;       mu4e-view-show-images t
+;;       mu4e-view-show-addresses t)
 
-;;; Mail directory shortcuts
-(setq mu4e-maildir-shortcuts
-      '(("/gmail/INBOX" . ?g)
-        ("/college/INBOX" . ?c)))
+;; ;;; Mail directory shortcuts
+;; (setq mu4e-maildir-shortcuts
+;;       '(("/gmail/INBOX" . ?g)
+;;         ("/college/INBOX" . ?c)))
 
-;;; Bookmarks
-(setq mu4e-bookmarks
-      `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
-        ("date:today..now" "Today's messages" ?t)
-        ("date:7d..now" "Last 7 days" ?w)
-        ("mime:image/*" "Messages with images" ?p)
-        (,(mapconcat 'identity
-                     (mapcar
-                      (lambda (maildir)
-                        (concat "maildir:" (car maildir)))
-                      mu4e-maildir-shortcuts) " OR ")
-         "All inboxes" ?i)))
+;; ;;; Bookmarks
+;; (setq mu4e-bookmarks
+;;       `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+;;         ("date:today..now" "Today's messages" ?t)
+;;         ("date:7d..now" "Last 7 days" ?w)
+;;         ("mime:image/*" "Messages with images" ?p)
+;;         (,(mapconcat 'identity
+;;                      (mapcar
+;;                       (lambda (maildir)
+;;                         (concat "maildir:" (car maildir)))
+;;                       mu4e-maildir-shortcuts) " OR ")
+;;          "All inboxes" ?i)))
 
 (defun scloudyy/post-init-persp-mode ()
   (spacemacs|define-custom-layout "@C++"
@@ -873,30 +883,30 @@ open and unsaved."
         search-engine-alist)
   )
 
-(defun scloudyy/init-beacon ()
-  (use-package beacon
-    :init
-    (progn
-      (spacemacs|add-toggle beacon
-        :status beacon-mode
-        :on (beacon-mode)
-        :off (beacon-mode -1)
-        :documentation "Enable point highlighting after scrolling"
-        :evil-leader "otb")
+;; (defun scloudyy/init-beacon ()
+;;   (use-package beacon
+;;     :init
+;;     (progn
+;;       (spacemacs|add-toggle beacon
+;;         :status beacon-mode
+;;         :on (beacon-mode)
+;;         :off (beacon-mode -1)
+;;         :documentation "Enable point highlighting after scrolling"
+;;         :evil-leader "otb")
 
-      (spacemacs/toggle-beacon-on))
-    :config (spacemacs|hide-lighter beacon-mode)
-    (setq beacon-color "#00ff00")))
+;;       (spacemacs/toggle-beacon-on))
+;;     :config (spacemacs|hide-lighter beacon-mode)
+;;     (setq beacon-color "#00ff00")))
 
 (defun scloudyy/post-init-eshell()
   (use-package eshell
     :init
     (setq eshell-aliases-file "~/.spacemacs.d/eshell-alias")))
 
-(defun scloudyy/post-init-deft()
-  (setq deft-directory "~/KuaiPan/notes")
-  (setq deft-auto-save-interval 0)
-  (setq deft-recursive t))
+;; (defun scloudyy/post-init-deft()
+;;   (setq deft-directory "~/KuaiPan/notes")
+;;   (setq deft-auto-save-interval 0)
+;;   (setq deft-recursive t))
 
 (defun scloudyy/post-init-chinese-pyim()
   (setq pyim-enable-words-predict nil)
@@ -904,30 +914,30 @@ open and unsaved."
   (setq pyim-use-tooltip nil)
   (setq x-gtk-use-system-tooltips t))
 
-(defun scloudyy/post-init-flycheck ()
-  (with-eval-after-load 'flycheck
-    (progn
-      (setq flycheck-check-syntax-automatically '(mode-enabled save)))))
+;; (defun scloudyy/post-init-flycheck ()
+;;   (with-eval-after-load 'flycheck
+;;     (progn
+;;       (setq flycheck-check-syntax-automatically '(mode-enabled save)))))
 
-(defun scloudyy/post-init-helm-gtags ()
-  (eval-after-load 'helm-gtags
-    '(spacemacs|hide-lighter helm-gtags-mode)))
+;; (defun scloudyy/post-init-helm-gtags ()
+;;   (eval-after-load 'helm-gtags
+;;     '(spacemacs|hide-lighter helm-gtags-mode)))
 
-(defun scloudyy/init-elpy()
-  (use-package elpy
-    :init
-    (spacemacs|add-company-hook python-mode)
-    (push 'elpy-company-backend company-backends-python-mode)
-    (setq elpy-remove-modeline-lighter nil
-          elpy-modules '(elpy-module-sane-defaults
-                         elpy-module-company
-                         elpy-module-eldoc))
-    (elpy-enable)
-    (spacemacs/set-leader-keys-for-major-mode 'python-mode
-      "hh" 'elpy-doc
-      "gg" 'elpy-goto-definition
-      "ia" 'elpy-importmagic-add-import
-      "ii" 'elpy-importmagic-fixup)))
+;; (defun scloudyy/init-elpy()
+;;   (use-package elpy
+;;     :init
+;;     (spacemacs|add-company-hook python-mode)
+;;     (push 'elpy-company-backend company-backends-python-mode)
+;;     (setq elpy-remove-modeline-lighter nil
+;;           elpy-modules '(elpy-module-sane-defaults
+;;                          elpy-module-company
+;;                          elpy-module-eldoc))
+;;     (elpy-enable)
+;;     (spacemacs/set-leader-keys-for-major-mode 'python-mode
+;;       "hh" 'elpy-doc
+;;       "gg" 'elpy-goto-definition
+;;       "ia" 'elpy-importmagic-add-import
+;;       "ii" 'elpy-importmagic-fixup)))
 
 (defun scloudyy/post-init-smartparens()
   (add-hook 'smartparens-mode-hook
@@ -940,3 +950,29 @@ open and unsaved."
 (defun scloudyy/post-init-evil-org()
   (add-hook 'evil-org-mode-hook
             (lambda() (spacemacs|diminish evil-org-mode))))
+
+(defun scloudyy/post-init-ace-window ()
+  (global-set-key (kbd "C-x C-o") #'ace-window))
+
+(defun scloudyy/post-init-avy ()
+  (progn
+    (global-set-key (kbd "C-s-'") 'avy-goto-char-2)
+    (global-set-key (kbd "M-'") 'avy-goto-char-2)))
+
+(defun scloudyy/post-init-markdown-mode ()
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
+
+    (with-eval-after-load 'markdown-mode
+      (progn
+        ;; (when (configuration-layer/package-usedp 'company)
+        ;;   (spacemacs|add-company-hook markdown-mode))
+
+        ;;(spacemacs/set-leader-keys-for-major-mode 'gfm-mode-map
+        ;;  "p" 'zilongshanren/markdown-to-html)
+        ;;(spacemacs/set-leader-keys-for-major-mode 'markdown-mode
+        ;;  "p" 'zilongshanren/markdown-to-html)
+
+        (evil-define-key 'normal markdown-mode-map (kbd "TAB") 'markdown-cycle)
+        ))
+    ))

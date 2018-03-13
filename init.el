@@ -74,7 +74,10 @@ values."
      ranger
      spacemacs-layouts
      fasd
-     ;;scloudyy
+     (chinese :packages youdao-dictionary fcitx
+              :variables chinese-enable-fcitx nil
+              chinese-enable-youdao-dict t)
+     scloudyy
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
