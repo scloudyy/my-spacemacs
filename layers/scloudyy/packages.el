@@ -54,9 +54,6 @@
 
     (push "TAGS" spacemacs-useless-buffers-regexp)
 
-    ;; (adjust-major-mode-keymap-with-evil "git-timemachine")
-    ;; (adjust-major-mode-keymap-with-evil "tabulated-list")
-
     (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
     (define-key evil-insert-state-map (kbd "C-r") 'evil-paste-from-register)
 
@@ -97,9 +94,6 @@
     (define-key evil-normal-state-map (kbd "] b") 'next-buffer)
     (define-key evil-normal-state-map (kbd "M-y") 'counsel-yank-pop)
 
-    ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
-    ;; (define-key evil-insert-state-map "\C-n" 'next-line)
-    ;; (define-key evil-insert-state-map "\C-k" 'kill-line)
     (define-key evil-emacs-state-map (kbd "s-f") 'forward-word)
     (define-key evil-insert-state-map (kbd "s-f") 'forward-word)
     (define-key evil-emacs-state-map (kbd "s-b") 'backward-word)
@@ -126,26 +120,13 @@
     ;; Don't move back the cursor one position when exiting insert mode
     (setq evil-move-cursor-back nil)
 
-    ;; (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
     (define-key evil-emacs-state-map (kbd "C-w") 'evil-delete-backward-word)
-    ;; (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)
-    ;; (define-key evil-emacs-state-map (kbd "C-w k") 'evil-window-up)
-    ;; (define-key evil-emacs-state-map (kbd "C-w l") 'evil-window-right)
 
     ;; for emacs shell mode
     ;; (define-key evil-emacs-state-map (kbd "s-b") 'ido-switch-buffer)
     ;; (define-key evil-emacs-state-map (kbd "s-f") 'ido-find-file)
     (evil-define-key 'emacs term-raw-map (kbd "C-w")
       'evil-delete-backward-word)
-
-
-    (setq evil-normal-state-tag   (propertize "[N]" 'face '((:background "DarkGoldenrod2" :foreground "black")))
-          evil-emacs-state-tag    (propertize "[E]" 'face '((:background "SkyBlue2" :foreground "black")))
-          evil-insert-state-tag   (propertize "[I]" 'face '((:background "chartreuse3") :foreground "white"))
-          evil-motion-state-tag   (propertize "[M]" 'face '((:background "plum3") :foreground "white"))
-          evil-visual-state-tag   (propertize "[V]" 'face '((:background "gray" :foreground "black")))
-          evil-operator-state-tag (propertize "[O]" 'face '((:background "purple"))))
-    (setq evil-insert-state-cursor '("chartreuse3" box))
     ))
 
 (defun scloudyy/post-init-company ()

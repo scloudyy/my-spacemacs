@@ -62,6 +62,7 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
+     python
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup nil)
@@ -90,7 +91,7 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls magit-gitflow org-projectile evil-mc realgud
                                     evil-args evil-ediff evil-exchange evil-unimpaired
                                     evil-indent-plus volatile-highlights smartparens
-                                    spaceline holy-mode skewer-mode rainbow-delimiters
+                                    holy-mode skewer-mode rainbow-delimiters
                                     highlight-indentation vi-tilde-fringe eyebrowse
                                     org-bullets smooth-scrolling org-repo-todo org-download org-timer
                                     livid-mode git-gutter git-gutter-fringe  evil-escape
